@@ -79,19 +79,19 @@
 
 
 
-<meta name="description" content="###前言  iOS自动化测试一直不如Android的方便，最近没事看简单看了下，分别基本使用了一下自动化框架Quick和KIF，做一些简单的介绍。  ###安装  安装前设置在安装之前将工程中的Defines Module设为YES，如下图： 使用cocoapods安装Quick和Nimble。在Podfile中添加pod命令，如下通过def xxx end来包裹pod命令，这样该def可以被">
+<meta name="description" content="前言 iOS自动化测试一直不如Android的方便，最近没事看简单看了下，分别基本使用了一下自动化框架Quick和KIF，做一些简单的介绍。  安装 安装前设置在安装之前将工程中的Defines Module设为YES，如下图： 使用cocoapods安装Quick和Nimble。在Podfile中添加pod命令，如下通过def xxx end来包裹pod命令，这样该def可以被用于多个相同的t">
 <meta name="keywords" content="iOS Test">
 <meta property="og:type" content="article">
 <meta property="og:title" content="iOS Unit自动化测试框架Quick简单使用">
 <meta property="og:url" content="http://yoursite.com/2018/02/05/iOS-Unit自动化测试框架Quick简单使用/index.html">
 <meta property="og:site_name" content="Smiacter&#39;s blog">
-<meta property="og:description" content="###前言  iOS自动化测试一直不如Android的方便，最近没事看简单看了下，分别基本使用了一下自动化框架Quick和KIF，做一些简单的介绍。  ###安装  安装前设置在安装之前将工程中的Defines Module设为YES，如下图： 使用cocoapods安装Quick和Nimble。在Podfile中添加pod命令，如下通过def xxx end来包裹pod命令，这样该def可以被">
+<meta property="og:description" content="前言 iOS自动化测试一直不如Android的方便，最近没事看简单看了下，分别基本使用了一下自动化框架Quick和KIF，做一些简单的介绍。  安装 安装前设置在安装之前将工程中的Defines Module设为YES，如下图： 使用cocoapods安装Quick和Nimble。在Podfile中添加pod命令，如下通过def xxx end来包裹pod命令，这样该def可以被用于多个相同的t">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/32983-e2fe1e4bc17d7ed2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2018-10-14T04:00:51.509Z">
+<meta property="og:updated_time" content="2018-10-14T04:16:42.533Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS Unit自动化测试框架Quick简单使用">
-<meta name="twitter:description" content="###前言  iOS自动化测试一直不如Android的方便，最近没事看简单看了下，分别基本使用了一下自动化框架Quick和KIF，做一些简单的介绍。  ###安装  安装前设置在安装之前将工程中的Defines Module设为YES，如下图： 使用cocoapods安装Quick和Nimble。在Podfile中添加pod命令，如下通过def xxx end来包裹pod命令，这样该def可以被">
+<meta name="twitter:description" content="前言 iOS自动化测试一直不如Android的方便，最近没事看简单看了下，分别基本使用了一下自动化框架Quick和KIF，做一些简单的介绍。  安装 安装前设置在安装之前将工程中的Defines Module设为YES，如下图： 使用cocoapods安装Quick和Nimble。在Podfile中添加pod命令，如下通过def xxx end来包裹pod命令，这样该def可以被用于多个相同的t">
 <meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/32983-e2fe1e4bc17d7ed2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
@@ -303,12 +303,10 @@
 
       
         <blockquote>
-<p>###前言</p>
-</blockquote>
+<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a><em>前言</em></h3></blockquote>
 <p>iOS自动化测试一直不如Android的方便，最近没事看简单看了下，分别基本使用了一下自动化框架<a href="https://github.com/Quick/Quick" target="_blank" rel="noopener">Quick</a>和<a href="https://github.com/kif-framework/KIF" target="_blank" rel="noopener">KIF</a>，做一些简单的介绍。</p>
 <blockquote>
-<p>###安装</p>
-<ul>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a><em>安装</em></h3><ul>
 <li>安装前设置<br>在安装之前将工程中的Defines Module设为YES，如下图：<br><img src="http://upload-images.jianshu.io/upload_images/32983-e2fe1e4bc17d7ed2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></li>
 <li>使用cocoapods安装Quick和Nimble。在Podfile中添加pod命令，如下通过def xxx end来包裹pod命令，这样该def可以被用于多个相同的target，如UnitTest和UITest<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">def testing_pods</span><br><span class="line">    pod '<span class="type">Quick'</span></span><br><span class="line">    pod '<span class="type">Nimble'</span></span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">target '<span class="type">DemoTests'</span> <span class="keyword">do</span></span><br><span class="line">    testing_pods</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
 </li>
@@ -317,8 +315,8 @@
 <p>Quick在Xcode9上Swift4貌似支持的不好，需将Quick和Nimble的版本手动配置为Swift3.2，后续官方可能会优化对Swift4的支持<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># 手动配置版本到swift <span class="number">3.2</span></span><br><span class="line">post_install <span class="keyword">do</span> |installer|</span><br><span class="line">    installer.pods_project.targets.each <span class="keyword">do</span> |target|</span><br><span class="line">        <span class="keyword">if</span> [target.name](http:<span class="comment">//target.name) == 'Quick' || [target.name](http://target.name) == 'Nimble'</span></span><br><span class="line">            <span class="built_in">print</span> <span class="string">"Changing Quick swift version to 3.2\n"</span></span><br><span class="line">            target.build_configurations.each <span class="keyword">do</span> |config|</span><br><span class="line">                config.build_settings['<span class="type">SWIFT_VERSION'</span>] = '<span class="number">3.2</span>'</span><br><span class="line">            end</span><br><span class="line">        end</span><br><span class="line">    end</span><br><span class="line">end</span><br></pre></td></tr></table></figure></p>
 <p>pod install安装即可使用<br><code>注</code>：可以安装Quick模板，这样可以快速的新建Quick测试文件，具体步骤查看GitHub官方文档，但是安装好了总觉得Xcode变得很慢，有可能是需要安装包管理的原因，对Xcode9支持的也不好，所以其实最好不安装模板，就几行代码，可以Copy到一个地方，创建的时候Paste过来即可。</p>
 <blockquote>
-<p>###出现No Such Module ‘Quick’问题解决<br>这个问题也得归结于目前对Xcode9 Swift4支持的不好，可以根据GitHub的issue #729（closed里面）进行尝试解决，不然编译通不过，对于入门者没有自动提示也是呵呵哒。issue #729主要 解决方法总结为：</p>
-</blockquote>
+<h3 id="出现No-Such-Module-‘Quick’问题解决"><a href="#出现No-Such-Module-‘Quick’问题解决" class="headerlink" title="出现No Such Module ‘Quick’问题解决"></a><em>出现No Such Module ‘Quick’问题解决</em></h3></blockquote>
+<p>这个问题也得归结于目前对Xcode9 Swift4支持的不好，可以根据GitHub的issue #729（closed里面）进行尝试解决，不然编译通不过，对于入门者没有自动提示也是呵呵哒。issue #729主要 解决方法总结为：</p>
 <ol>
 <li><code>手动将Quick版本配置到Swift3.2，上述Podfile中已提及</code></li>
 <li><code>注意使用最新的Quick版本，即默认的master分支最新源码</code></li>
@@ -332,12 +330,10 @@
 </ol>
 <p>我的做了以上尝试当天其实还是一直显示No Such Module ‘Quick’，然后就没管它去看了KIF UI 测试框架，结果第二天来就可以找到了，确实这个我是没啥好说的，肯定的是Quick对Xcode9/Swift4的支持不够好，还有可能是Xcode本身的indexing系统在某些时候不理想（Xcode9当然是目前indexing最好的版本，其本身用Swift重构后解决了以前的太多不方便）</p>
 <blockquote>
-<p>###Test文件中不能引用主工程类问题解决</p>
-</blockquote>
+<h3 id="Test文件中不能引用主工程类问题解决"><a href="#Test文件中不能引用主工程类问题解决" class="headerlink" title="Test文件中不能引用主工程类问题解决"></a><em>Test文件中不能引用主工程类问题解决</em></h3></blockquote>
 <p>Test文件中找不到主工程中的类，如测试其ViewController，需要将ViewController作为实例变量。尝试了几种方法，如import ProjectName，将Target设置到Test<br>解决方法，参照官方的XCTest的写法，这样引入<code>@testable import ProjectName</code>即可</p>
 <blockquote>
-<p>###写在结尾</p>
-</blockquote>
+<h3 id="写在结尾"><a href="#写在结尾" class="headerlink" title="写在结尾"></a><em>写在结尾</em></h3></blockquote>
 <p>对iOS自动化测试研究不深，平时也很少用到，希望能够有更好的测试框架和更简易的教程出来。<br>附<a href="https://github.com/Smiacter/iOSAutoTestDemo" target="_blank" rel="noopener">Demo</a>地址</p>
 
       
@@ -429,8 +425,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -497,6 +502,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装"><span class="nav-number">2.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#出现No-Such-Module-‘Quick’问题解决"><span class="nav-number">3.</span> <span class="nav-text">出现No Such Module ‘Quick’问题解决</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Test文件中不能引用主工程类问题解决"><span class="nav-number">4.</span> <span class="nav-text">Test文件中不能引用主工程类问题解决</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#写在结尾"><span class="nav-number">5.</span> <span class="nav-text">写在结尾</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
