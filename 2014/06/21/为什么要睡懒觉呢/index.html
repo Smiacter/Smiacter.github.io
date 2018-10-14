@@ -108,27 +108,25 @@
 
 
 
-  <meta name="description" content="前言 iOS自动化测试一直不如Android的方便，最近没事看简单看了下，分别基本使用了一下自动化框架Quick和KIF，做一些简单的介绍。  安装  安装前设置在安装之前将工程中的Defines Module设为YES，如下图： 使用cocoapods安装Quick和Nimble。在Podfile中添加pod命令，如下通过def xxx end来包裹pod命令，这样该def可以被用于多个相同的">
-<meta name="keywords" content="iOS Test">
+  <meta name="description" content="从大学开始，我和我的小伙伴没都养成了睡懒觉的“好习惯”在大学的时候，每当第二天第一讲没有课的时候，我的闹钟基本上都是关闭状态。不知道为什么，睡懒觉的习惯轻轻松松的就养成了，而且再也没有停止过。有的时候，就算是明明睡不着了，大脑里还是会潜意识的发出信号“我这是在睡懒觉，继续休息”。于是，有开始闭上眼睛，继续休养生息。 在工作的时候，每当周末来临，我的闹钟也必定是关闭状态。不知道为什么，我总能在周六的">
+<meta name="keywords" content="杂谈">
 <meta property="og:type" content="article">
-<meta property="og:title" content="iOS Unit自动化测试框架Quick简单使用">
-<meta property="og:url" content="http://yoursite.com/2018/02/05/iOS-Unit自动化测试框架Quick简单使用/index.html">
+<meta property="og:title" content="为什么要睡懒觉呢">
+<meta property="og:url" content="http://yoursite.com/2014/06/21/为什么要睡懒觉呢/index.html">
 <meta property="og:site_name" content="Smiacter&#39;s blog">
-<meta property="og:description" content="前言 iOS自动化测试一直不如Android的方便，最近没事看简单看了下，分别基本使用了一下自动化框架Quick和KIF，做一些简单的介绍。  安装  安装前设置在安装之前将工程中的Defines Module设为YES，如下图： 使用cocoapods安装Quick和Nimble。在Podfile中添加pod命令，如下通过def xxx end来包裹pod命令，这样该def可以被用于多个相同的">
+<meta property="og:description" content="从大学开始，我和我的小伙伴没都养成了睡懒觉的“好习惯”在大学的时候，每当第二天第一讲没有课的时候，我的闹钟基本上都是关闭状态。不知道为什么，睡懒觉的习惯轻轻松松的就养成了，而且再也没有停止过。有的时候，就算是明明睡不着了，大脑里还是会潜意识的发出信号“我这是在睡懒觉，继续休息”。于是，有开始闭上眼睛，继续休养生息。 在工作的时候，每当周末来临，我的闹钟也必定是关闭状态。不知道为什么，我总能在周六的">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/32983-e2fe1e4bc17d7ed2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2018-10-14T05:08:45.456Z">
+<meta property="og:updated_time" content="2018-10-14T07:13:34.217Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="iOS Unit自动化测试框架Quick简单使用">
-<meta name="twitter:description" content="前言 iOS自动化测试一直不如Android的方便，最近没事看简单看了下，分别基本使用了一下自动化框架Quick和KIF，做一些简单的介绍。  安装  安装前设置在安装之前将工程中的Defines Module设为YES，如下图： 使用cocoapods安装Quick和Nimble。在Podfile中添加pod命令，如下通过def xxx end来包裹pod命令，这样该def可以被用于多个相同的">
-<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/32983-e2fe1e4bc17d7ed2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta name="twitter:title" content="为什么要睡懒觉呢">
+<meta name="twitter:description" content="从大学开始，我和我的小伙伴没都养成了睡懒觉的“好习惯”在大学的时候，每当第二天第一讲没有课的时候，我的闹钟基本上都是关闭状态。不知道为什么，睡懒觉的习惯轻轻松松的就养成了，而且再也没有停止过。有的时候，就算是明明睡不着了，大脑里还是会潜意识的发出信号“我这是在睡懒觉，继续休息”。于是，有开始闭上眼睛，继续休养生息。 在工作的时候，每当周末来临，我的闹钟也必定是关闭状态。不知道为什么，我总能在周六的">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/02/05/iOS-Unit自动化测试框架Quick简单使用/"/>
+  <link rel="canonical" href="http://yoursite.com/2014/06/21/为什么要睡懒觉呢/"/>
 
 
 
@@ -138,7 +136,7 @@
   };
 </script>
 
-  <title>iOS Unit自动化测试框架Quick简单使用 | Smiacter's blog</title>
+  <title>为什么要睡懒觉呢 | Smiacter's blog</title>
   
 
 
@@ -303,7 +301,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/05/iOS-Unit自动化测试框架Quick简单使用/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2014/06/21/为什么要睡懒觉呢/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Smiacter">
@@ -320,7 +318,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">iOS Unit自动化测试框架Quick简单使用
+          <h1 class="post-title" itemprop="name headline">为什么要睡懒觉呢
               
             
           </h1>
@@ -345,7 +343,7 @@
                 
               
 
-              <time title="Created: 2018-02-05 11:54:23" itemprop="dateCreated datePublished" datetime="2018-02-05T11:54:23+08:00">2018-02-05</time>
+              <time title="Created: 2014-06-21 15:10:42" itemprop="dateCreated datePublished" datetime="2014-06-21T15:10:42+08:00">2014-06-21</time>
             
 
             
@@ -362,7 +360,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2018-10-14 13:08:45" itemprop="dateModified" datetime="2018-10-14T13:08:45+08:00">2018-10-14</time>
+                <time title="Modified: 2018-10-14 15:13:34" itemprop="dateModified" datetime="2018-10-14T15:13:34+08:00">2018-10-14</time>
               
             
           </span>
@@ -376,10 +374,10 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/02/05/iOS-Unit自动化测试框架Quick简单使用/#comments" itemprop="discussionUrl">
+                <a href="/2014/06/21/为什么要睡懒觉呢/#comments" itemprop="discussionUrl">
                 
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/02/05/iOS-Unit自动化测试框架Quick简单使用/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2014/06/21/为什么要睡懒觉呢/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -407,39 +405,12 @@
       
 
       
-        <blockquote>
-<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a><em>前言</em></h3></blockquote>
-<p>iOS自动化测试一直不如Android的方便，最近没事看简单看了下，分别基本使用了一下自动化框架<a href="https://github.com/Quick/Quick" target="_blank" rel="noopener">Quick</a>和<a href="https://github.com/kif-framework/KIF" target="_blank" rel="noopener">KIF</a>，做一些简单的介绍。</p>
-<blockquote>
-<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a><em>安装</em></h3></blockquote>
-<ul>
-<li>安装前设置<br>在安装之前将工程中的Defines Module设为YES，如下图：<br><img src="http://upload-images.jianshu.io/upload_images/32983-e2fe1e4bc17d7ed2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></li>
-<li>使用cocoapods安装Quick和Nimble。在Podfile中添加pod命令，如下通过def xxx end来包裹pod命令，这样该def可以被用于多个相同的target，如UnitTest和UITest<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">def testing_pods</span><br><span class="line">    pod '<span class="type">Quick'</span></span><br><span class="line">    pod '<span class="type">Nimble'</span></span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">target '<span class="type">DemoTests'</span> <span class="keyword">do</span></span><br><span class="line">    testing_pods</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>Quick在Xcode9上Swift4貌似支持的不好，需将Quick和Nimble的版本手动配置为Swift3.2，后续官方可能会优化对Swift4的支持<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># 手动配置版本到swift <span class="number">3.2</span></span><br><span class="line">post_install <span class="keyword">do</span> |installer|</span><br><span class="line">    installer.pods_project.targets.each <span class="keyword">do</span> |target|</span><br><span class="line">        <span class="keyword">if</span> [target.name](http:<span class="comment">//target.name) == 'Quick' || [target.name](http://target.name) == 'Nimble'</span></span><br><span class="line">            <span class="built_in">print</span> <span class="string">"Changing Quick swift version to 3.2\n"</span></span><br><span class="line">            target.build_configurations.each <span class="keyword">do</span> |config|</span><br><span class="line">                config.build_settings['<span class="type">SWIFT_VERSION'</span>] = '<span class="number">3.2</span>'</span><br><span class="line">            end</span><br><span class="line">        end</span><br><span class="line">    end</span><br><span class="line">end</span><br></pre></td></tr></table></figure></p>
-<p>pod install安装即可使用<br><code>注</code>：可以安装Quick模板，这样可以快速的新建Quick测试文件，具体步骤查看GitHub官方文档，但是安装好了总觉得Xcode变得很慢，有可能是需要安装包管理的原因，对Xcode9支持的也不好，所以其实最好不安装模板，就几行代码，可以Copy到一个地方，创建的时候Paste过来即可。</p>
-<blockquote>
-<h3 id="出现No-Such-Module-‘Quick’问题解决"><a href="#出现No-Such-Module-‘Quick’问题解决" class="headerlink" title="出现No Such Module ‘Quick’问题解决"></a><em>出现No Such Module ‘Quick’问题解决</em></h3></blockquote>
-<p>这个问题也得归结于目前对Xcode9 Swift4支持的不好，可以根据GitHub的issue #729（closed里面）进行尝试解决，不然编译通不过，对于入门者没有自动提示也是呵呵哒。issue #729主要 解决方法总结为：</p>
-<ol>
-<li><code>手动将Quick版本配置到Swift3.2，上述Podfile中已提及</code></li>
-<li><code>注意使用最新的Quick版本，即默认的master分支最新源码</code></li>
-<li><code>Pod install后再次检查，将工程中的Defines Module和pod工程中的Defines Module设置为YES</code></li>
-<li><code>framework search paths不配置任何东西</code></li>
-</ol>
-<p>还有可以尝试按照GitHub官方Document里面的TroublesShooting(常见安装问题)进行解决，其总结为：</p>
-<ol>
-<li><code>清掉Xcode DriveData数据</code></li>
-<li><code>通过Manage Scheme将Quick、Nimble、Pods-ProjectNameTests勾选上，让他们show出来，然后分别选中他们各编译一次，最后返回你的工程进行测试</code></li>
-</ol>
-<p>我的做了以上尝试当天其实还是一直显示No Such Module ‘Quick’，然后就没管它去看了KIF UI 测试框架，结果第二天来就可以找到了，确实这个我是没啥好说的，肯定的是Quick对Xcode9/Swift4的支持不够好，还有可能是Xcode本身的indexing系统在某些时候不理想（Xcode9当然是目前indexing最好的版本，其本身用Swift重构后解决了以前的太多不方便）</p>
-<blockquote>
-<h3 id="Test文件中不能引用主工程类问题解决"><a href="#Test文件中不能引用主工程类问题解决" class="headerlink" title="Test文件中不能引用主工程类问题解决"></a><em>Test文件中不能引用主工程类问题解决</em></h3></blockquote>
-<p>Test文件中找不到主工程中的类，如测试其ViewController，需要将ViewController作为实例变量。尝试了几种方法，如import ProjectName，将Target设置到Test<br>解决方法，参照官方的XCTest的写法，这样引入<code>@testable import ProjectName</code>即可</p>
-<blockquote>
-<h3 id="写在结尾"><a href="#写在结尾" class="headerlink" title="写在结尾"></a><em>写在结尾</em></h3></blockquote>
-<p>对iOS自动化测试研究不深，平时也很少用到，希望能够有更好的测试框架和更简易的教程出来。<br>附<a href="https://github.com/Smiacter/iOSAutoTestDemo" target="_blank" rel="noopener">Demo</a>地址</p>
+        <h3 id="从大学开始，我和我的小伙伴没都养成了睡懒觉的“好习惯”"><a href="#从大学开始，我和我的小伙伴没都养成了睡懒觉的“好习惯”" class="headerlink" title="从大学开始，我和我的小伙伴没都养成了睡懒觉的“好习惯”"></a>从大学开始，我和我的小伙伴没都养成了睡懒觉的“好习惯”</h3><p>在大学的时候，每当第二天第一讲没有课的时候，我的闹钟基本上都是关闭状态。不知道为什么，睡懒觉的习惯轻轻松松的就养成了，而且再也没有停止过。有的时候，就算是明明睡不着了，大脑里还是会潜意识的发出信号“我这是在睡懒觉，继续休息”。于是，有开始闭上眼睛，继续休养生息。</p>
+<p>在工作的时候，每当周末来临，我的闹钟也必定是关闭状态。不知道为什么，我总能在周六的时候睡到十一二点中，有没有一气呵成我不知道，但至少我“坚持”到了那个时间点。我已记不清那些时间是怎么过掉的，时间都去哪儿了还真不知道。或许是因为在睡觉，或许根本就属于一个混沌状态。</p>
+<h3 id="奇怪的是，对于我来说，睡懒觉并没有挺高睡眠质量"><a href="#奇怪的是，对于我来说，睡懒觉并没有挺高睡眠质量" class="headerlink" title="奇怪的是，对于我来说，睡懒觉并没有挺高睡眠质量"></a>奇怪的是，对于我来说，睡懒觉并没有挺高睡眠质量</h3><p>无论是大学还是工作，睡懒觉都没有使人更加的神清气爽，精神抖擞。相反，它带来更多的是浑浊与昏噩，懒觉后的我们可能更多的是跌跌撞撞、晕头转向，或许说的有点夸张，但至少不是正常的清醒。当然，以上的情况纯属个人情况，不代表所有人的感受。对于我来说，懒觉的前生一定是伴随着晚睡或者熬夜。每到第二天没课或是不上班，心里就会有一种莫名的兴奋，会充满充沛的经历，去安排当晚的各种时间。即使是没有活动，看电视聊天，刷手机微信、微博等各种APP都要熬到那个点才肯入睡。很显然，晚睡熬夜已经成了懒觉的必备前奏，他们相辅相成，让我们愈是无法自拔，中毒越深。真的，我们既兴奋了，也懒觉了睡爽了，这种“轻松”的方式谁又忍心拒绝呢！</p>
+<h3 id="想想那些早起的日子…"><a href="#想想那些早起的日子…" class="headerlink" title="想想那些早起的日子…"></a>想想那些早起的日子…</h3><p>除了正常学习工作的规律作息时间外，我也有过不少早起的经历。因为自己非常喜欢英语，在大学的时候为了练习口语，有一年每天早上都会很早的从床上爬起来，先绕着校园的固定线路跑上一圈，然后再大声的念着自己喜欢的英语。除了英语，自己也自学过日语，当然语言这东西靠熟能生巧，学习的方式也和英语一样，同样的早起。由于爱好，在工作的一段时间里我也坚持了一段早起的习惯，做身体锻炼，进行英语口语练习。想想那些早起的日子，其实记忆深刻，远远胜于迷糊的懒觉时光。早起的日子总是很有精神，对于我来说，闹钟叫醒的总比要睡到睡不着了才起床来的舒服。我喜欢那种特殊的拥有无限活力的感觉，我喜欢早起看见的那一缕朝阳，喜欢看见所有的绿色，喜欢去呼吸不同的空气，喜欢所有早起的人每天坚持的笑容与舒坦，喜欢这在于晨的一切生机。</p>
+<h3 id="为什么要睡懒觉呢"><a href="#为什么要睡懒觉呢" class="headerlink" title="为什么要睡懒觉呢"></a>为什么要睡懒觉呢</h3><p>我是一个喜欢简单的人，经常说着simple is real, and totally enough.这句话。最近开始看简书，也发现其中有很多影响自己的一些文章，像“做一个极简主义者”之类的都深深的说到了我的心里，还有很多关于当代人陋习、懒惰之类的文章都一语置地。我们都知道我们自己的很多坏习惯，却始终不肯改变现状，改变懒惰与安逸，沉寂被吞没在现代信息流和各种社交、对比之中。睡懒觉大多数原因是我们因为前晚放纵了自己，打破了作息时间，而浪费的这些时间大多数是因为以上所说的各种陋习、懒惰、网络、社交等关键字。为什么要晚睡，为什么要有这种强迫症，在网络发达的今天，或许搞清楚了这些问题，或许放下很多没有意义的东西，我们会更好的和家人、朋友相处，也能够更好的健康生活。当然，我们也不用在睡懒觉了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">做一个简单的人，践行。</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -460,7 +431,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/iOS-Test/" rel="tag"># iOS Test</a>
+            <a href="/tags/杂谈/" rel="tag"># 杂谈</a>
           
         </div>
       
@@ -473,18 +444,14 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/03/25/DLNA-CyberLink使用/" rel="next" title="DLNA CyberLink使用">
-                <i class="fa fa-chevron-left"></i> DLNA CyberLink使用
-              </a>
-            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/02/05/iOS-UI自动化测试框架KIF简单使用/" rel="prev" title="iOS UI自动化测试框架KIF简单使用">
-                iOS UI自动化测试框架KIF简单使用 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/03/25/DLNA-CyberLink使用/" rel="prev" title="DLNA CyberLink使用">
+                DLNA CyberLink使用 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -640,7 +607,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装"><span class="nav-number">2.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#出现No-Such-Module-‘Quick’问题解决"><span class="nav-number">3.</span> <span class="nav-text">出现No Such Module ‘Quick’问题解决</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Test文件中不能引用主工程类问题解决"><span class="nav-number">4.</span> <span class="nav-text">Test文件中不能引用主工程类问题解决</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#写在结尾"><span class="nav-number">5.</span> <span class="nav-text">写在结尾</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#从大学开始，我和我的小伙伴没都养成了睡懒觉的“好习惯”"><span class="nav-number">1.</span> <span class="nav-text">从大学开始，我和我的小伙伴没都养成了睡懒觉的“好习惯”</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#奇怪的是，对于我来说，睡懒觉并没有挺高睡眠质量"><span class="nav-number">2.</span> <span class="nav-text">奇怪的是，对于我来说，睡懒觉并没有挺高睡眠质量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#想想那些早起的日子…"><span class="nav-number">3.</span> <span class="nav-text">想想那些早起的日子…</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么要睡懒觉呢"><span class="nav-number">4.</span> <span class="nav-text">为什么要睡懒觉呢</span></a></li></ol></div>
             
 
           </div>
@@ -804,9 +771,9 @@
   
     <script type="text/javascript">
       var disqus_config = function () {
-        this.page.url = 'http://yoursite.com/2018/02/05/iOS-Unit自动化测试框架Quick简单使用/';
-        this.page.identifier = '2018/02/05/iOS-Unit自动化测试框架Quick简单使用/';
-        this.page.title = 'iOS Unit自动化测试框架Quick简单使用';
+        this.page.url = 'http://yoursite.com/2014/06/21/为什么要睡懒觉呢/';
+        this.page.identifier = '2014/06/21/为什么要睡懒觉呢/';
+        this.page.title = '为什么要睡懒觉呢';
         };
       function loadComments () {
         var d = document, s = d.createElement('script');
