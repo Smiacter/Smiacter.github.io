@@ -14,7 +14,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="zh-Hans">
+<html class="theme-next pisces use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -84,7 +84,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Pisces',
     version: '6.4.2',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: false,
@@ -232,6 +232,22 @@
         
         
           
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />About</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
+  </li>
+        
+        
+        
+          
           <li class="menu-item menu-item-archives">
     <a href="/archives/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
@@ -241,9 +257,6 @@
       
     </ul>
   
-
-  
-    
 
   
 
@@ -265,6 +278,9 @@
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
+          
+            
+
           
           <div id="content" class="content">
             
@@ -348,7 +364,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2018-10-14 12:16:42" itemprop="dateModified" datetime="2018-10-14T12:16:42+08:00">2018-10-14</time>
+                <time title="Modified: 2018-10-14 13:08:45" itemprop="dateModified" datetime="2018-10-14T13:08:45+08:00">2018-10-14</time>
               
             
           </span>
@@ -387,12 +403,12 @@
 <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a><em>前言</em></h3></blockquote>
 <p>iOS自动化测试一直不如Android的方便，最近没事看简单看了下，分别基本使用了一下自动化框架<a href="https://github.com/Quick/Quick" target="_blank" rel="noopener">Quick</a>和<a href="https://github.com/kif-framework/KIF" target="_blank" rel="noopener">KIF</a>，做一些简单的介绍。</p>
 <blockquote>
-<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a><em>安装</em></h3><ul>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a><em>安装</em></h3></blockquote>
+<ul>
 <li>安装前设置<br>在安装之前将工程中的Defines Module设为YES，如下图：<br><img src="http://upload-images.jianshu.io/upload_images/32983-e2fe1e4bc17d7ed2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></li>
 <li>使用cocoapods安装Quick和Nimble。在Podfile中添加pod命令，如下通过def xxx end来包裹pod命令，这样该def可以被用于多个相同的target，如UnitTest和UITest<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">def testing_pods</span><br><span class="line">    pod '<span class="type">Quick'</span></span><br><span class="line">    pod '<span class="type">Nimble'</span></span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">target '<span class="type">DemoTests'</span> <span class="keyword">do</span></span><br><span class="line">    testing_pods</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-</blockquote>
 <p>Quick在Xcode9上Swift4貌似支持的不好，需将Quick和Nimble的版本手动配置为Swift3.2，后续官方可能会优化对Swift4的支持<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># 手动配置版本到swift <span class="number">3.2</span></span><br><span class="line">post_install <span class="keyword">do</span> |installer|</span><br><span class="line">    installer.pods_project.targets.each <span class="keyword">do</span> |target|</span><br><span class="line">        <span class="keyword">if</span> [target.name](http:<span class="comment">//target.name) == 'Quick' || [target.name](http://target.name) == 'Nimble'</span></span><br><span class="line">            <span class="built_in">print</span> <span class="string">"Changing Quick swift version to 3.2\n"</span></span><br><span class="line">            target.build_configurations.each <span class="keyword">do</span> |config|</span><br><span class="line">                config.build_settings['<span class="type">SWIFT_VERSION'</span>] = '<span class="number">3.2</span>'</span><br><span class="line">            end</span><br><span class="line">        end</span><br><span class="line">    end</span><br><span class="line">end</span><br></pre></td></tr></table></figure></p>
 <p>pod install安装即可使用<br><code>注</code>：可以安装Quick模板，这样可以快速的新建Quick测试文件，具体步骤查看GitHub官方文档，但是安装好了总觉得Xcode变得很慢，有可能是需要安装包管理的原因，对Xcode9支持的也不好，所以其实最好不安装模板，就几行代码，可以Copy到一个地方，创建的时候Paste过来即可。</p>
 <blockquote>
@@ -772,7 +788,7 @@
 
 
 
-  <div class="theme-info">Theme – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a> v6.4.2</div>
+  <div class="theme-info">Theme – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Pisces</a> v6.4.2</div>
 
 
 
@@ -864,6 +880,13 @@
 
   
   
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.4.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.4.2"></script>
+
+
 
   
 
