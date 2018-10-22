@@ -116,12 +116,12 @@
 <meta property="og:site_name" content="Smiacter&#39;s blog">
 <meta property="og:description" content="缘由  相信所有的iOSer都多多少少会用到Cocoapods进行三方库的管理，尽管现在Swift大多说使用Swift Package Manager, Carthage进行管理，但仍有很多的库如OC代码库，大多数之前的Swift代码库是不支持的，还是使用pod进行管理。 最近公司的代码需要开源并制作成SDK供其他三方厂商使用，考虑到三方库管理平台的使用普及度，选择首先发布到Cocoapods。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://pgiqt9vfi.bkt.clouddn.com/static/images/module_public.jpg">
-<meta property="og:updated_time" content="2018-10-21T04:32:38.884Z">
+<meta property="og:image" content="http://pgiqt9vfi.bkt.clouddn.com/static/images/module_public">
+<meta property="og:updated_time" content="2018-10-22T02:10:31.297Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Swift发布共有库到Cocoapods（含静态.a，.framework，OC代码）">
 <meta name="twitter:description" content="缘由  相信所有的iOSer都多多少少会用到Cocoapods进行三方库的管理，尽管现在Swift大多说使用Swift Package Manager, Carthage进行管理，但仍有很多的库如OC代码库，大多数之前的Swift代码库是不支持的，还是使用pod进行管理。 最近公司的代码需要开源并制作成SDK供其他三方厂商使用，考虑到三方库管理平台的使用普及度，选择首先发布到Cocoapods。">
-<meta name="twitter:image" content="http://pgiqt9vfi.bkt.clouddn.com/static/images/module_public.jpg">
+<meta name="twitter:image" content="http://pgiqt9vfi.bkt.clouddn.com/static/images/module_public">
 
 
 
@@ -345,12 +345,24 @@
                 
               
 
-              <time title="Created: 2018-10-21 12:19:05 / Modified: 12:32:38" itemprop="dateCreated datePublished" datetime="2018-10-21T12:19:05+08:00">2018-10-21</time>
+              <time title="Created: 2018-10-21 12:19:05" itemprop="dateCreated datePublished" datetime="2018-10-21T12:19:05+08:00">2018-10-21</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-10-22 10:10:31" itemprop="dateModified" datetime="2018-10-22T10:10:31+08:00">2018-10-22</time>
               
             
           </span>
@@ -421,7 +433,7 @@
 <ul>
 <li><h4 id="问题1-Include-of-non-modular-header-inside-framework-module-39-eNotesSdk-39"><a href="#问题1-Include-of-non-modular-header-inside-framework-module-39-eNotesSdk-39" class="headerlink" title="问题1. Include of non-modular header inside framework module &#39;eNotesSdk&#39;"></a>问题1. <code>Include of non-modular header inside framework module &#39;eNotesSdk&#39;</code></h4><p>原因：一般是因为没有所引用文件不是public权限，默认是project</p>
 <p>解决方法：将你引用的代码文件配置到s.source_files，默认情况下source_files下的文件都会是public的，如果发现不是可以在<code>Xcode -&gt; File inspector -&gt;Target membership</code>设置成public</p>
-<p><code><img src="http://pgiqt9vfi.bkt.clouddn.com/static/images/module_public.jpg"></code></p>
+<p><code><img src="http://pgiqt9vfi.bkt.clouddn.com/static/images/module_public"></code></p>
 </li>
 <li><h4 id="问题2-遵循OC中的delegate导致eNotesSDK-Swift-h-not-found"><a href="#问题2-遵循OC中的delegate导致eNotesSDK-Swift-h-not-found" class="headerlink" title="问题2. 遵循OC中的delegate导致eNotesSDK-Swift.h not found"></a>问题2. <code>遵循OC中的delegate导致eNotesSDK-Swift.h not found</code></h4><p>原因：该类为了可以被外界调用声明成了public，而使用的依赖SDK中存在代理无法设置成public extension或者代理方法不能设置成public从而造成编译错误。</p>
 <p>解决方法：这个没有其他别的办法，目前做法是新建了一个非Public修饰的类用以包裹单独处理其业务，然后再该类统一调度使用。</p>
