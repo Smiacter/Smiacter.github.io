@@ -116,13 +116,13 @@
 <meta property="og:site_name" content="Smiacter&#39;s blog">
 <meta property="og:description" content="前言 参与公司的一个项目，手机作为遥控器，与公司的硬件产品（智能机顶盒，类似小米盒子、天猫魔盒等）进行配合，通过手机控制电视上的操作，如前后左右、关机、音量大小、返回、主页、菜单等。硬件采用的协议是DLNA协议，是基于PlatinumKit（C++）写的。由于该项目的时间比较短，顾没有去使用PlatinumKit，因为那需要去进一步研究相关的C++代码，需要一定的时间。在Github上搜索了一下">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://pgiqt9vfi.bkt.clouddn.com/static/images/dlna1.png">
-<meta property="og:image" content="http://pgiqt9vfi.bkt.clouddn.com/static/images/dlna2.jpg">
-<meta property="og:updated_time" content="2018-10-13T05:15:29.269Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/Smiacter/BlogImageSource/master/dlna1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Smiacter/BlogImageSource/master/dlna2.jpg">
+<meta property="og:updated_time" content="2018-11-09T08:13:15.134Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="DLNA CyberLink使用">
 <meta name="twitter:description" content="前言 参与公司的一个项目，手机作为遥控器，与公司的硬件产品（智能机顶盒，类似小米盒子、天猫魔盒等）进行配合，通过手机控制电视上的操作，如前后左右、关机、音量大小、返回、主页、菜单等。硬件采用的协议是DLNA协议，是基于PlatinumKit（C++）写的。由于该项目的时间比较短，顾没有去使用PlatinumKit，因为那需要去进一步研究相关的C++代码，需要一定的时间。在Github上搜索了一下">
-<meta name="twitter:image" content="http://pgiqt9vfi.bkt.clouddn.com/static/images/dlna1.png">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Smiacter/BlogImageSource/master/dlna1.png">
 
 
 
@@ -363,7 +363,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2018-10-13 13:15:29" itemprop="dateModified" datetime="2018-10-13T13:15:29+08:00">2018-10-13</time>
+                <time title="Modified: 2018-11-09 16:13:15" itemprop="dateModified" datetime="2018-11-09T16:13:15+08:00">2018-11-09</time>
               
             
           </span>
@@ -415,11 +415,10 @@
 <h3 id="导入整个clinkc工程使用"><a href="#导入整个clinkc工程使用" class="headerlink" title="导入整个clinkc工程使用"></a><em>导入整个clinkc工程使用</em></h3></blockquote>
 <p>DLNA CyberLink是基于C语言写的一套代码，存在很多的依赖（头文件），它只提供了一个clinkc.xcodeproj的工程文件，并没有向其他三方库一样有单独出来的一套容易使用的文件目录，而且也很难去单独剥离出来（是可以的，我也尝试了），最后选择了将整个工程导入，只使用其中可以用到的IOS封装。<br>需要注意一下两点：</p>
 <ol>
-<li><p>将导入的clinkc.xcodeproj的Build Settings下的Architectures修改为ARCHS_STANDARD也就是支持armv7和arm64的（保持和你的原有项目一直，现在的机子都支持arm64，选ARCHS_STANDARD就对了），在相应的Valid Architectures下也要和主项目一致，如图:</p>
-<img src="http://pgiqt9vfi.bkt.clouddn.com/static/images/dlna1.png">
+<li><p>将导入的clinkc.xcodeproj的Build Settings下的Architectures修改为ARCHS_STANDARD也就是支持armv7和arm64的（保持和你的原有项目一直，现在的机子都支持arm64，选ARCHS_STANDARD就对了），在相应的Valid Architectures下也要和主项目一致，如图:<br><img src="https://raw.githubusercontent.com/Smiacter/BlogImageSource/master/dlna1.png" alt=""></p>
 </li>
 <li><p>两个Build Settings下Development中的Skip Install要设置正确，clinkc.xcodeproj中设置为YES，在自己的主工程中设置为NO，这也就标示了你的工程是这工程，如图:</p>
-<img src="http://pgiqt9vfi.bkt.clouddn.com/static/images/dlna2.jpg">
+<p><img src="https://raw.githubusercontent.com/Smiacter/BlogImageSource/master/dlna2.jpg" alt=""></p>
 </li>
 </ol>
 <blockquote>
