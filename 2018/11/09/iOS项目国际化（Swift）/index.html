@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.2" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/basketball-180*180.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/basketball-32*32.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/basketball-16*16.png?v=6.4.2">
+
+
+  <link rel="mask-icon" href="/images/basketball.svg?v=6.4.2" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '6.4.2',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="前言对于APP的国际化，大家应该都不陌生，常用的微信、微博、支付宝等应用均支持多种语言（国家数不一定一致）。默认情况下显示语言是跟随系统变化的，而APP内手动修改后不会随系统改变（本地存储偏好）。多语言对于受众不止于中国的APP还是很有必要的，至少同时支持英文，当然不排除只支持英文的国际APP如Instagram。 本文主要对国际化中遇到的问题进行记录与解答，可能在通用熟知的部分会简单描述带过。">
+<meta name="keywords" content="Swift">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS项目国际化（Swift）">
+<meta property="og:url" content="http://yoursite.com/2018/11/09/iOS项目国际化（Swift）/index.html">
+<meta property="og:site_name" content="Smiacter&#39;s blog">
+<meta property="og:description" content="前言对于APP的国际化，大家应该都不陌生，常用的微信、微博、支付宝等应用均支持多种语言（国家数不一定一致）。默认情况下显示语言是跟随系统变化的，而APP内手动修改后不会随系统改变（本地存储偏好）。多语言对于受众不止于中国的APP还是很有必要的，至少同时支持英文，当然不排除只支持英文的国际APP如Instagram。 本文主要对国际化中遇到的问题进行记录与解答，可能在通用熟知的部分会简单描述带过。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://raw.githubusercontent.com/Smiacter/BlogImageSource/master/localize_add_new.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Smiacter/BlogImageSource/master/localize_strings.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/Smiacter/BlogImageSource/master/localize_mul_language.jpg">
+<meta property="og:updated_time" content="2018-12-18T12:18:03.129Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS项目国际化（Swift）">
+<meta name="twitter:description" content="前言对于APP的国际化，大家应该都不陌生，常用的微信、微博、支付宝等应用均支持多种语言（国家数不一定一致）。默认情况下显示语言是跟随系统变化的，而APP内手动修改后不会随系统改变（本地存储偏好）。多语言对于受众不止于中国的APP还是很有必要的，至少同时支持英文，当然不排除只支持英文的国际APP如Instagram。 本文主要对国际化中遇到的问题进行记录与解答，可能在通用熟知的部分会简单描述带过。">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Smiacter/BlogImageSource/master/localize_add_new.png">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/11/09/iOS项目国际化（Swift）/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>iOS项目国际化（Swift） | Smiacter's blog</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Smiacter's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Simple is real and totally enough</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />About</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/09/iOS项目国际化（Swift）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Smiacter">
+      <meta itemprop="description" content="Recording, learning">
+      <meta itemprop="image" content="/images/avatar_dog.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Smiacter's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">iOS项目国际化（Swift）
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-11-09 16:37:57" itemprop="dateCreated datePublished" datetime="2018-11-09T16:37:57+08:00">2018-11-09</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-12-18 20:18:03" itemprop="dateModified" datetime="2018-12-18T20:18:03+08:00">2018-12-18</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/11/09/iOS项目国际化（Swift）/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/11/09/iOS项目国际化（Swift）/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>对于APP的国际化，大家应该都不陌生，常用的微信、微博、支付宝等应用均支持多种语言（国家数不一定一致）。默认情况下显示语言是跟随系统变化的，而APP内手动修改后不会随系统改变（本地存储偏好）。多语言对于受众不止于中国的APP还是很有必要的，至少同时支持英文，当然不排除只支持英文的国际APP如Instagram。</p>
+<p>本文主要对国际化中遇到的问题进行记录与解答，可能在通用熟知的部分会简单描述带过。</p>
+<h3 id="新增语言支持设置"><a href="#新增语言支持设置" class="headerlink" title="新增语言支持设置"></a>新增语言支持设置</h3><blockquote>
+<p>注：项目默认开发语言为English英文</p>
+</blockquote>
+<ul>
+<li><p>添加新语言，项目 -&gt; Project -&gt; Info -&gt; Localizations -&gt; 点击加号添加语言如<code>简体中文</code></p>
+<p><img src="https://raw.githubusercontent.com/Smiacter/BlogImageSource/master/localize_add_new.png" alt=""></p>
+</li>
+<li><p>创建用于项目内自定义需要国际化的字符串集Localizable.strings，这里面放除info.plist以外的所有国际化</p>
+<p>在iOS下新建Strings File类型并命名为Localizable</p>
+<p><img src="https://raw.githubusercontent.com/Smiacter/BlogImageSource/master/localize_strings.jpg" alt=""></p>
+</li>
+<li><p>创建配置info.plist国际化的字符串集InfoPlist.strings，此文件放App名字、info.plist里面参数国际化</p>
+<p>参照上一步在iOS下新建String File类型并命名为InfoPlist</p>
+</li>
+<li><p>分别对Localizable.string和InfoPlist.string添加支持多语言，任意选择一个语言选择Localize，然后把所有支持的语言勾上</p>
+<p><img src="https://raw.githubusercontent.com/Smiacter/BlogImageSource/master/localize_mul_language.jpg" alt=""></p>
+</li>
+<li><p>纯代码定义不同语言内容时，需要在引号后面加分号，不然编译会通不过</p>
+</li>
+</ul>
+<h3 id="通用国际化（项目内自定义显示文字）"><a href="#通用国际化（项目内自定义显示文字）" class="headerlink" title="通用国际化（项目内自定义显示文字）"></a>通用国际化（项目内自定义显示文字）</h3><p>在每个语言的strings文件中添加需要支持国际话的说明，每个语言里面的key需要一样。我的处理方法是定义了一个专门放key的一个常量定义文件，并且定义和key一致，方便在纯代码国际化的时候调用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">// MARK: Common</span><br><span class="line"></span><br><span class="line">/// 下拉刷新 PullToRefresh</span><br><span class="line">let PullToRefresh                   = &quot;PullToRefresh&quot;</span><br><span class="line">/// 松开刷新 ReleaseToRefresh</span><br><span class="line">let ReleaseToRefresh                = &quot;ReleaseToRefresh&quot;</span><br><span class="line">/// 刷新中 Refreshing</span><br><span class="line">let Refreshing                      = &quot;Refreshing&quot;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// MARK: Home</span><br><span class="line"></span><br><span class="line">/// 总资产</span><br><span class="line">let TitleTotalAssets                = &quot;TitleTotalAssets&quot;</span><br><span class="line">/// 我的卡片 My cards [title]</span><br><span class="line">let TitleMyCards                    = &quot;TitleMyCards&quot;</span><br></pre></td></tr></table></figure>
+<p>然后在该文件里面同时定义了一个方便国际化的全局使用函数Localize，即国际化使用纯代码需要用的函数，我这里没有传comment，有需求的可以自己更改</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">func localize(key: String) -&gt; String &#123;</span><br><span class="line">    return NSLocalizedString(key, comment: &quot;default&quot;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用：在代码中需要国际话的地方，调用localize函数即可，传入自己定义的key，如</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">assetsLbl.text = localize(key: TitleTotalAssets)</span><br></pre></td></tr></table></figure>
+<h3 id="配置相关国际化（如隐私权限，App名称等info-plist）"><a href="#配置相关国际化（如隐私权限，App名称等info-plist）" class="headerlink" title="配置相关国际化（如隐私权限，App名称等info.plist）"></a>配置相关国际化（如隐私权限，App名称等info.plist）</h3><ul>
+<li><p>APP名字国际化</p>
+<p>在InfoPlist.strings各个文件下添加CFBundleDisplayName=”对应语言的APP名字”;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CFBundleDisplayName = &quot;对应语言的APP名字&quot;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>相机权限</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">NSCameraUsageDescription = &quot;对应语言的相机权限说明&quot;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>相册访问权限</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">NSPhotoLibraryUsageDescription = &quot;对应语言使用相册权限说明&quot;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>相册存储权限</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">NSPhotoLibraryAddUsageDescription = &quot;对应语言相册存储权限说明&quot;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>蓝牙访问权限</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">NSBluetoothPeripheralUsageDescription = &quot;对应语言蓝牙访问权限说明&quot;;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="推送国际化"><a href="#推送国际化" class="headerlink" title="推送国际化"></a>推送国际化</h3><p>根据<a href="https://developer.apple.com/library/archive/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/CreatingtheNotificationPayload.html#//apple_ref/doc/uid/TP40008194-CH10-SW9" target="_blank" rel="noopener">苹果官方文档</a>介绍，提供了两种方案，一种是服务器做国际化，一种是APP本地做国际化，我这里选择的是APP做国际化，服务器配合。APP做推送国际化，用到<code>loc-key</code>和<code>loc-args</code>，将他们通过payload的方式推送到手机上，以<a href="https://www.getui.com/cn/getui.html" target="_blank" rel="noopener">个推</a>为例，服务器需要通过setAPNInfo(Payload payload)将这些信息推到客户端。</p>
+<p>我们的推送只包含了Title和一条基本信息，也就是最基本的推送信息展示，所以和服务器商量好分别定义好Title、body的key和body的args，定义如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&quot;title-loc-key&quot; : &quot;NOTIFICATION_TITLE&quot;,	// 这个key将会在Localizable.strings需要国际化的通知标题。内容自己定义，只要和服务器商量好</span><br><span class="line">&quot;body-loc-key&quot; : &quot;NOTIFICATION_MESSAGE&quot;,// Localizable.strings需要国际化的内容</span><br><span class="line">&quot;body-loc-args&quot; : [&quot;0xasdfadsfasdfasdfasdfasdfasdffasdf&quot;] // 内容的参数，此处只有一个也可以多个，在国际化的时候通过%@来读取参数，有多少个参数依次用多少个%@</span><br></pre></td></tr></table></figure>
+<p>国际化示例：</p>
+<p>英文</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&quot;NOTIFICATION_TITLE&quot; = &quot;Transaction confirmed&quot;;</span><br><span class="line">&quot;NOTIFICATION_MESSAGE&quot; = &quot;Transaction ID: %@&quot;;//%@会显示消息推送过来的body-loc-args内容</span><br></pre></td></tr></table></figure>
+<p>中文</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&quot;NOTIFICATION_TITLE&quot; = &quot;交易已确认&quot;;</span><br><span class="line">&quot;NOTIFICATION_MESSAGE&quot; = &quot;交易ID：%@&quot;;</span><br></pre></td></tr></table></figure>
+<h3 id="应用内切换"><a href="#应用内切换" class="headerlink" title="应用内切换"></a>应用内切换</h3><p>原理，重新加载本地语言文件，即在应用内切换语言后，改变该APP的语言，然后重新加载对应语言包。</p>
+<p>当前APP的语言保存在沙盒，key为AppleLanguages，应用内切换时可以更改该值，启动时可以通过该key获取。</p>
+<p>切换语言包，可以写一个集成Bundle的类重写localizedString方法，已重新加载，代码如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">class ExBundle: Bundle &#123;</span><br><span class="line">    override func localizedString(forKey key: String, value: String?, table tableName: String?) -&gt; String &#123;</span><br><span class="line">        if let bundle = Bundle.getLanguageBundle() &#123;</span><br><span class="line">            return bundle.localizedString(forKey: key, value: value, table: tableName)</span><br><span class="line">        &#125;else &#123;</span><br><span class="line">            return super.localizedString(forKey: key, value: value, table: tableName)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">extension Bundle &#123;</span><br><span class="line">    </span><br><span class="line">    private static var onLanguageDispatchOnce: ()-&gt;Void = &#123;</span><br><span class="line">        //替换Bundle.main为自定义的ExBundle</span><br><span class="line">        object_setClass(Bundle.main, ExBundle.self)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    func onLanguage()&#123;</span><br><span class="line">        Bundle.onLanguageDispatchOnce()</span><br><span class="line">        if LocalizeManager.isArabicLanguage() &#123;</span><br><span class="line">            UIView.appearance().semanticContentAttribute = .forceLeftToRight</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    static func getLanguageBundle() -&gt; Bundle? &#123;</span><br><span class="line">        guard LocalizeManager.currentLanguage() != .auto else &#123; return nil &#125;</span><br><span class="line">        let tpath = Bundle.main.path(forResource: LocalizeManager.currentLanguage().value, ofType: &quot;lproj&quot;)</span><br><span class="line">        guard let path = tpath, !path.isEmpty else &#123; return nil &#125;</span><br><span class="line">        </span><br><span class="line">        return Bundle(path: path)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在APP启动时，调用一次onLanguage swizze使用ExBundle</p>
+<p>闪烁问题解决：将切换语言VC添加到根navigation中，代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">guard let nav = StoryboardSegue.sceneNamed(&quot;RootNav@Main&quot;) as? UINavigationController else &#123; return &#125;</span><br><span class="line">guard let settingVC = StoryboardSegue.sceneNamed(SettingViewController.reuseIdentifier+segueSuffix) as? SettingViewController else &#123; return &#125;</span><br><span class="line">        </span><br><span class="line">var vcs = nav.viewControllers</span><br><span class="line">vcs.append(settingVC)</span><br><span class="line">DispatchQueue.main.async &#123;</span><br><span class="line">	UIApplication.shared.keyWindow?.rootViewController = nav</span><br><span class="line">    nav.viewControllers = vcs</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="其他（如阿拉伯语布局）"><a href="#其他（如阿拉伯语布局）" class="headerlink" title="其他（如阿拉伯语布局）"></a>其他（如阿拉伯语布局）</h3><p>当语言为阿拉伯语时，系统布局会自动为从右到左排列和显示，包括返回。前提是你的布局严格按照autolayout来做，如果发现任然是从左到右的，那可能是你的布局约束存在问题。如果有些控件显示，如光标显示没有颠倒，这个时候就需要代码手动设置，任何你想要设置的控件都可以使用以下代码实现：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">view.semanticContentAttribute = .forceRightToLeft</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Swift/" rel="tag"># Swift</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/10/21/Swift发布共有库到Cocoapods（含静态-a，-framework，OC代码）/" rel="next" title="Swift发布共有库到Cocoapods（含静态.a，.framework，OC代码）">
+                <i class="fa fa-chevron-left"></i> Swift发布共有库到Cocoapods（含静态.a，.framework，OC代码）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar_dog.jpeg"
+                alt="Smiacter" />
+            
+              <p class="site-author-name" itemprop="name">Smiacter</p>
+              <p class="site-description motion-element" itemprop="description">Recording, learning</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">5</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/Smiacter" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:Smiacter@gmail.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#新增语言支持设置"><span class="nav-number">2.</span> <span class="nav-text">新增语言支持设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通用国际化（项目内自定义显示文字）"><span class="nav-number">3.</span> <span class="nav-text">通用国际化（项目内自定义显示文字）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置相关国际化（如隐私权限，App名称等info-plist）"><span class="nav-number">4.</span> <span class="nav-text">配置相关国际化（如隐私权限，App名称等info.plist）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#推送国际化"><span class="nav-number">5.</span> <span class="nav-text">推送国际化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#应用内切换"><span class="nav-number">6.</span> <span class="nav-text">应用内切换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他（如阿拉伯语布局）"><span class="nav-number">7.</span> <span class="nav-text">其他（如阿拉伯语布局）</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Smiacter</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Pisces</a> v6.4.2</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.4.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.4.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.2"></script>
+
+
+
+  
+
+  
+    <script id="dsq-count-scr" src="https://smiacter.disqus.com/count.js" async></script>
+  
+
+  
+    <script type="text/javascript">
+      var disqus_config = function () {
+        this.page.url = 'http://yoursite.com/2018/11/09/iOS项目国际化（Swift）/';
+        this.page.identifier = '2018/11/09/iOS项目国际化（Swift）/';
+        this.page.title = 'iOS项目国际化（Swift）';
+        };
+      function loadComments () {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://smiacter.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      }
+      
+        loadComments();
+      
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
