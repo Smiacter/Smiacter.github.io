@@ -108,25 +108,25 @@
 
 
 
-  <meta name="description" content="前言Flutter开发中，iOS相关的常见问题，持续更新~ pub.flutter-io.cn缓存目录点击每个项目的.packages即可查看，其所有的本地依赖包的缓存地址，我的地址为： 1[Flutter Path]/.pub-cache/hosted/xxxpackage PS：另外还有个老目录在/Users/smiacter/.pub-cache，为之前使用fvm时遗留下来的，应该没有用 安">
-<meta name="keywords" content="Flutter iOS">
+  <meta name="description" content="前言记录一些Go语言入门学习的基础知识">
+<meta name="keywords" content="Go">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Flutter_iOS常见问题">
-<meta property="og:url" content="http://yoursite.com/2020/04/14/Flutter-iOS常见问题/index.html">
+<meta property="og:title" content="Golang入门简记">
+<meta property="og:url" content="http://yoursite.com/2020/04/15/Golang入门简记/index.html">
 <meta property="og:site_name" content="Smiacter&#39;s blog">
-<meta property="og:description" content="前言Flutter开发中，iOS相关的常见问题，持续更新~ pub.flutter-io.cn缓存目录点击每个项目的.packages即可查看，其所有的本地依赖包的缓存地址，我的地址为： 1[Flutter Path]/.pub-cache/hosted/xxxpackage PS：另外还有个老目录在/Users/smiacter/.pub-cache，为之前使用fvm时遗留下来的，应该没有用 安">
+<meta property="og:description" content="前言记录一些Go语言入门学习的基础知识">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-04-14T15:19:37.642Z">
+<meta property="og:updated_time" content="2020-04-15T06:06:25.881Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Flutter_iOS常见问题">
-<meta name="twitter:description" content="前言Flutter开发中，iOS相关的常见问题，持续更新~ pub.flutter-io.cn缓存目录点击每个项目的.packages即可查看，其所有的本地依赖包的缓存地址，我的地址为： 1[Flutter Path]/.pub-cache/hosted/xxxpackage PS：另外还有个老目录在/Users/smiacter/.pub-cache，为之前使用fvm时遗留下来的，应该没有用 安">
+<meta name="twitter:title" content="Golang入门简记">
+<meta name="twitter:description" content="前言记录一些Go语言入门学习的基础知识">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2020/04/14/Flutter-iOS常见问题/"/>
+  <link rel="canonical" href="http://yoursite.com/2020/04/15/Golang入门简记/"/>
 
 
 
@@ -136,7 +136,7 @@
   };
 </script>
 
-  <title>Flutter_iOS常见问题 | Smiacter's blog</title>
+  <title>Golang入门简记 | Smiacter's blog</title>
   
 
 
@@ -301,7 +301,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/14/Flutter-iOS常见问题/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/15/Golang入门简记/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Smiacter">
@@ -318,7 +318,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Flutter_iOS常见问题
+          <h1 class="post-title" itemprop="name headline">Golang入门简记
               
             
           </h1>
@@ -343,7 +343,7 @@
                 
               
 
-              <time title="Created: 2020-04-14 10:23:59 / Modified: 23:19:37" itemprop="dateCreated datePublished" datetime="2020-04-14T10:23:59+08:00">2020-04-14</time>
+              <time title="Created: 2020-04-15 14:00:35 / Modified: 14:06:25" itemprop="dateCreated datePublished" datetime="2020-04-15T14:00:35+08:00">2020-04-15</time>
             
 
             
@@ -362,10 +362,10 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/04/14/Flutter-iOS常见问题/#comments" itemprop="discussionUrl">
+                <a href="/2020/04/15/Golang入门简记/#comments" itemprop="discussionUrl">
                 
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2020/04/14/Flutter-iOS常见问题/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2020/04/15/Golang入门简记/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -393,19 +393,7 @@
       
 
       
-        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>Flutter开发中，iOS相关的常见问题，持续更新~</p>
-<h3 id="pub-flutter-io-cn缓存目录"><a href="#pub-flutter-io-cn缓存目录" class="headerlink" title="pub.flutter-io.cn缓存目录"></a>pub.flutter-io.cn缓存目录</h3><p>点击每个项目的.packages即可查看，其所有的本地依赖包的缓存地址，我的地址为：</p>
-<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[Flutter Path]/.pub-cache/hosted/xxxpackage</span><br></pre></td></tr></table></figure>
-<p>PS：另外还有个老目录在/Users/smiacter/.pub-cache，为之前使用fvm时遗留下来的，应该没有用</p>
-<h3 id="安装Flutter-SDK后运行Flutter-doctor报错"><a href="#安装Flutter-SDK后运行Flutter-doctor报错" class="headerlink" title="安装Flutter SDK后运行Flutter doctor报错"></a>安装Flutter SDK后运行Flutter doctor报错</h3><ol>
-<li>“dart” can’t be opened because Apple cannot check it for malicious software.</li>
-</ol>
-<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 解决方法，终端输入以下命令，重新执行flutter doctorming'ling</span></span><br><span class="line">sudo spctl --master-disable</span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>“idevice_id” cannot be opened because the developer cannot be verified</li>
-</ol>
-<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 解决方法，去设置允许权限，具体操作</span></span><br><span class="line"><span class="number">1.</span> 进入 system preference -&gt; Security &amp; Privacy </span><br><span class="line"><span class="number">2.</span> 在Allow apps downloaded from下面AppStore and identified developers 中同意（always allow），如果当时没有弹出来，可以退出了再进去查看</span><br><span class="line"><span class="number">3.</span> 再次执行Flutter doctor，如果是和idevice_id一样的权限问题，依次同意权限即可</span><br><span class="line">  </span><br><span class="line"><span class="comment">// 另外一个方法 参考 https://medium.com/@alexandrosbaramilis/setting-up-flutter-on-macos-catalina-d023df8845ae</span></span><br><span class="line">For <span class="string">"idevice_id"</span> error:</span><br><span class="line">sudo xattr -d com.apple.quarantine /Users/Your_User/Your_Dev_Folder/flutter/bin/cache/artifacts/libimobiledevice/idevice_id</span><br><span class="line">For <span class="string">"ideviceinfo"</span> error:</span><br><span class="line">sudo xattr -d com.apple.quarantine /Users/Your_User/Your_Dev_Folder/flutter/bin/cache/artifacts/libimobiledevice/ideviceinfo</span><br><span class="line">For <span class="string">"idevicesyslog"</span> error:</span><br><span class="line">sudo xattr -d com.apple.quarantine /Users/Your_User/Your_Dev_Folder/flutter/bin/cache/artifacts/libimobiledevice/idevicesyslog</span><br><span class="line">For <span class="string">"iproxy"</span> error:</span><br><span class="line">sudo xattr -d com.apple.quarantine /Users/Your_User/Your_Dev_Folder/flutter/bin/cache/artifacts/usbmuxd/iproxy</span><br></pre></td></tr></table></figure>
-<h3 id="VSCode-iOS设置启动不了-报Error-connecting-to-the-service-protocol-failed-to-connect-to-http-127-0-0-1-1029-89AGRYqn-pA-【Xcode没问题】"><a href="#VSCode-iOS设置启动不了-报Error-connecting-to-the-service-protocol-failed-to-connect-to-http-127-0-0-1-1029-89AGRYqn-pA-【Xcode没问题】" class="headerlink" title="VSCode iOS设置启动不了 报Error connecting to the service protocol: failed to connect to http://127.0.0.1:1029/89AGRYqn_pA 【Xcode没问题】"></a>VSCode iOS设置启动不了 报Error connecting to the service protocol: failed to connect to <a href="http://127.0.0.1:1029/89AGRYqn_pA" target="_blank" rel="noopener">http://127.0.0.1:1029/89AGRYqn_pA</a> 【Xcode没问题】</h3><p>目前暂时没有找到好的方法，官方issue的答复大概是在Dev分支上得到了解决。把电脑的代理和网络关了，在模拟器上成功跑起来过一次，好多人的回答就是禁用WiFi等网络设置。</p>
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>记录一些Go语言入门学习的基础知识</p>
 
       
     </div>
@@ -426,7 +414,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Flutter-iOS/" rel="tag"># Flutter iOS</a>
+            <a href="/tags/Go/" rel="tag"># Go</a>
           
         </div>
       
@@ -439,8 +427,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/04/13/WebView与JS交互/" rel="next" title="Flutter WebView与JS（Vue）交互">
-                <i class="fa fa-chevron-left"></i> Flutter WebView与JS（Vue）交互
+              <a href="/2020/04/15/Vue使用简记/" rel="next" title="Vue使用简记">
+                <i class="fa fa-chevron-left"></i> Vue使用简记
               </a>
             
           </div>
@@ -448,10 +436,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/04/14/聊天感想-积极的学习，努力的提升/" rel="prev" title="聊天感想-积极的学习，努力的提升">
-                聊天感想-积极的学习，努力的提升 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -622,7 +606,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pub-flutter-io-cn缓存目录"><span class="nav-number">2.</span> <span class="nav-text">pub.flutter-io.cn缓存目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装Flutter-SDK后运行Flutter-doctor报错"><span class="nav-number">3.</span> <span class="nav-text">安装Flutter SDK后运行Flutter doctor报错</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#VSCode-iOS设置启动不了-报Error-connecting-to-the-service-protocol-failed-to-connect-to-http-127-0-0-1-1029-89AGRYqn-pA-【Xcode没问题】"><span class="nav-number">4.</span> <span class="nav-text">VSCode iOS设置启动不了 报Error connecting to the service protocol: failed to connect to http://127.0.0.1:1029/89AGRYqn_pA 【Xcode没问题】</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li></ol></div>
             
 
           </div>
@@ -786,9 +770,9 @@
   
     <script type="text/javascript">
       var disqus_config = function () {
-        this.page.url = 'http://yoursite.com/2020/04/14/Flutter-iOS常见问题/';
-        this.page.identifier = '2020/04/14/Flutter-iOS常见问题/';
-        this.page.title = 'Flutter_iOS常见问题';
+        this.page.url = 'http://yoursite.com/2020/04/15/Golang入门简记/';
+        this.page.identifier = '2020/04/15/Golang入门简记/';
+        this.page.title = 'Golang入门简记';
         };
       function loadComments () {
         var d = document, s = d.createElement('script');
