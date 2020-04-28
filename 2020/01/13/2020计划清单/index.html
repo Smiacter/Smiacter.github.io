@@ -113,68 +113,6 @@
             <div class="container">
     
     
-        <div class="post-toc">
-    <div class="tocbot-list">
-    </div>
-    <div class="tocbot-list-menu">
-        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
-        <a onclick="go_top()">Back to top</a>
-        <a onclick="go_bottom()">Go to bottom</a>
-    </div>
-</div>
-
-<script>
-    document.ready(
-        function () {
-            tocbot.init({
-                tocSelector: '.tocbot-list',
-                contentSelector: '.post-content',
-                headingSelector: 'h1, h2, h3, h4, h5',
-                collapseDepth: 1,
-                orderedList: false,
-                scrollSmooth: true,
-            })
-        }
-    )
-
-    function expand_toc() {
-        var b = document.querySelector(".tocbot-toc-expand");
-        tocbot.init({
-            tocSelector: '.tocbot-list',
-            contentSelector: '.post-content',
-            headingSelector: 'h1, h2, h3, h4, h5',
-            collapseDepth: 6,
-            orderedList: false,
-            scrollSmooth: true,
-        });
-        b.setAttribute("onclick", "collapse_toc()");
-        b.innerHTML = "Collapse all"
-    }
-
-    function collapse_toc() {
-        var b = document.querySelector(".tocbot-toc-expand");
-        tocbot.init({
-            tocSelector: '.tocbot-list',
-            contentSelector: '.post-content',
-            headingSelector: 'h1, h2, h3, h4, h5',
-            collapseDepth: 1,
-            orderedList: false,
-            scrollSmooth: true,
-        });
-        b.setAttribute("onclick", "expand_toc()");
-        b.innerHTML = "Expand all"
-    }
-
-    function go_top() {
-        window.scrollTo(0, 0);
-    }
-
-    function go_bottom() {
-        window.scrollTo(0, document.body.scrollHeight);
-    }
-
-</script>
-    
 
     
     <article class="post-wrap">
@@ -197,19 +135,15 @@
         </header>
 
         <div class="post-content">
-            <h3 id="主业编程方面"><a href="#主业编程方面" class="headerlink" title="主业编程方面"></a>主业编程方面</h3><ul>
-<li style="list-style: none"><input type="checkbox"> Flutter深入学习，从原理上掌握，达到Flutter中级水平</li>
-<li style="list-style: none"><input type="checkbox"> Vue方面，根据工作需求而定</li>
-<li style="list-style: none"><input type="checkbox"> Swift UI的初步使用，着手写一个上手的APP</li>
-<li style="list-style: none"><input type="checkbox"> 技术文章更新，暂定一月一篇，2020年发布10篇，无论是多简单的都可以分享【争取每篇文章附带对应视频，视频教程方向】</li>
-</ul>
-<h3 id="其他方向扩展"><a href="#其他方向扩展" class="headerlink" title="其他方向扩展"></a>其他方向扩展</h3><ul>
-<li style="list-style: none"><input type="checkbox"> 私单，当前单完成后暂时不再接单，预计到4月份或者更靠后</li>
-<li style="list-style: none"><input type="checkbox"> 视频处理学习，剪辑、后期，先用于上述提及的技术文章配套</li>
-<li style="list-style: none"><input type="checkbox"> 选择部分视频APP发布分享视频，尝试在视频这块搞搞事情</li>
-<li style="list-style: none"><input type="checkbox"> 看书，每周末至少看半天3小时的书，暂定中国历史方向，从最早时间开始</li>
-</ul>
-
+            <div id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
+  <div class="hbe-input-container">
+  <input type="password" id="hbePass" placeholder="" />
+    <label for="hbePass">Hey, password is required here.</label>
+    <div class="bottom-line"></div>
+  </div>
+  <script id="hbeData" type="hbeData" data-hmacdigest="ea53f4a8a87643e66eee9a3bdc7b1e1d419c6b28310feec6df3cbd1188ddf878">959edeb275c81e20521543f55e5e3666c1dceca26c85bc4ea7fbc4e8e0e1861e55b0b6bb35af9170397cbff47f64df37a3639da4869589218154b08f92b65aaa865d78f06d05068a2007c030d76d50f7a305183859c60bdf17d49772f4de0d24a9149beb52ae37bf81c38e9185df120324e0f0eca17599e84f731730c340087674c5bbd0d5dee780c72719a5d6560f3b94bd9a59bdd8ec1ae8a941c673877c1b69355c78852c92c32bd8a20fa5b0cebf82693d0ceef4e32e57adaa43890bba186f233a655ad6d8b36489f138a2a14a236389c0ee96655785504e99d572c8318f9c2193acfbb6234fbd609ff951456849dfb954c519e440c203573dc9064361bd2c02c1db0709b533ce38496815a009aa9329dafc337af4cc70b8959269b104f308535603a54a9167ce60167131f06b48ab0d8d21e06ded4c0fe7d202ae90e8c1ff960f48bd9f668fb0a287d0802ec67e2281fdcdb0d757267b0a86309b4c60946148f02bced85589b6428a484eccfd06330cabbd923cec468a473a3fd26091260ec88076eaac1986461d9841b0387e500494d1bfd6b3d2eb0d407b51771cde8025c0938f00c1dc08a5c89b4a8a47f682e563e8ce0d5c5b4bd6d484564f7273ecbda95addd0b3a382ea5fac4c1c8c18dc75331548e580c796ed322815da9df78a8bc7ce3ee03cb898903a78437d95a7cba9295672e76237ba9fdbc0ed7aee4ac4f3401a7465a92322b59d1d6f3baf94e80a30f54ca8fa27e98c5ccde584fec4a593a46e94b78c0fb938ab4e6df3b3126c54bd5d4d441fd3d52477cd3b847e859689f04f13262e1c85bd0902acafc5caff9275065b3174e4b726ea5183c2ff7ffa8dc4075e0aaf45092904950feffdf2c11e02724ce52ae1dc7430d9fcac49d2bb81360692c5adf91c50d3a7b449719240c373513e103455b7f84e8284953276846e4fe24f6a8d51c826ad152c779b4a2c511255f9b23ea6da8d942f89dc1f6d469751434d3681d1a82db07cec6c495f3dfcfebe802e40c7043e2afd55c18024d1c9e5bb216653bf9144c9c158060e733c71db6d928f1f90bad03bd2c1f013ff336209258485f155813f33f086e24d927f07f96ee2bb6d2015d446accbc5d3e21b3bde8fae31927dec1a664f443b8420d4bc59c26097a904b39fcd6db3224fa3f7c7ff6680facfca01ab1871970358c347c9baee52dbccbdd07b600b4840ba7924817366203d6d0d1a033cfe208e2e89a6dd6eebcfea41ddae72f6029f0ebf05784d3d909ad77b5675a58f80da1f3de25f4b817613aee554733ffc27bef5a93474a81ffe39b392c1b6376556b92b84ca76c0a5e4452ab828582eaed1253331c1ae9b0c9b84ae7bea14eea73c6f491eb9014adc2713b9340870f7f1b2b304de21523735cdc73141db839c2e6b196a48866d21d314420634d96b40a72b1f8ef121eb53601fa661ec165da877d7dcf16a665874595b62c7e0be84b6a8b9945345d0e4087ab126208f76e86807ef6fd9df790564191ed19541ce6d29ebd494f433154c6cc22b705c96c375097017e4f8115820dd1e094f04a2b3acbda417d62fbaa222dd9dc904f0f9f351d1f82973d9e724433689d248f2e18fba221b3240a59b5b6a6b74228518d2f0f62909aa937a56ee81eeb40ff29461dfdeaceb8f8f99bb174c5f6ad9a030dd1feeac662d9568de61f8ec3608f9b18eaa76acd5a6be3a9faec64d0ba0316f7f185a7363e87d61665497b8f4b6fe729775c6b4ccc3ac50c916b9811277d9f63ad3c36d14c817969d15048781cac0cbe785539f24761f60c7830edfe2474c75d46dda4fbe56eb04578686edde010e34de9f3974600471108761782dbad9a088e91f009d8651e8354167ef11ffcaefbe8559561d8d028fd6e402dfbfcdd37310126c70f141f46a7eca0cf28cfff86078e8d74afbb63f15b4ca6d6a7c380150d46f31e34290b675334d30963f487160f2be717946eca55e7a6cb038</script>
+</div>
+<script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">
         </div>
 
         
