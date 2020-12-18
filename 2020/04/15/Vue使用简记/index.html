@@ -220,11 +220,65 @@
 <li>一路确定，等待项目创建完成</li>
 <li>vscode打开项目，终端输入npm run serve 能够运行，则说明项目创建成功</li>
 </ul>
+<h3 id="常用代码"><a href="#常用代码" class="headerlink" title="常用代码"></a>常用代码</h3><ol>
+<li><p>两到三个公用的界面，最好封装为组件，简化代码</p>
+</li>
+<li><p>组件使用</p>
+<ul>
+<li><p>在传动态参数时，prop前面加冒号<code>:</code>，传固定值时不加</p>
+</li>
+<li><p>组件有事件传递时，使用emit传递回父组件，父组件用<code>v-on:组件传递过来的事件名=&quot;父组件接收的事件名&quot;</code>来接收</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 组件事件传递方式</span></span><br><span class="line"><span class="comment">// param为参数</span></span><br><span class="line"><span class="comment">// clickEvent为父组件接收的事件名</span></span><br><span class="line">clickEvent (param) &#123;</span><br><span class="line">  <span class="keyword">this</span>.$emit(<span class="string">'clickEvent'</span>, param)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 父组件接收事件方式（假设组件名为component1）</span></span><br><span class="line"><span class="comment">// 使用v-on接收，clickEvent为子组件传过来的事件名，noticeClick为父组件实际处理事件的方法名</span></span><br><span class="line">&lt;component1 v-on:clickEvent=<span class="string">"noticeClick"</span> /&gt;</span><br><span class="line">  </span><br><span class="line"><span class="comment">// 父组件具体实现子组件事件的地方</span></span><br><span class="line">noticeClick (param) &#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>必须要计算好单个页面的高度，否则会影响如Vant组件的上拉下拉效果，滚动条显示等，具体参照西北项目</p>
+</li>
+<li><p>CSS样式，基本上flex和grid可以搞定大部分情况，可参照收藏的掘金文章多熟悉</p>
+</li>
+<li><p>Vant目前修改其组件内部样式是用的<code>::v-deep .vant的class名(通过Chrome调试查看)</code></p>
+</li>
+<li><p>路由传参与接收</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 传值</span></span><br><span class="line"><span class="comment">// name: 路由名</span></span><br><span class="line"><span class="comment">// params: 所传参数，object（字典）类型</span></span><br><span class="line"><span class="keyword">this</span>.$router.push(&#123; <span class="attr">name</span>: <span class="string">'tododetail'</span>, <span class="attr">params</span>: &#123; <span class="attr">id</span>: id, <span class="attr">type</span>: pType &#125; &#125;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 接收传值</span></span><br><span class="line"><span class="comment">// 通过当前路由route获取params中的参数</span></span><br><span class="line"><span class="comment">// xx为传值过来中object中的具体参数字段</span></span><br><span class="line"><span class="keyword">this</span>.$route.params.xx</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol start="7">
+<li><p>项目配置</p>
+<ul>
+<li>网络请求跨域</li>
+<li>屏幕适配</li>
+<li>公共样式导入</li>
+<li>…</li>
+</ul>
+</li>
+</ol>
 <h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><ul>
 <li><p>调用data或者方法，一定要记得写this. 不然起不了作用很难发现问题😂</p>
 </li>
 <li><p>JS字符串中使用变量</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> strWithVar = <span class="string">`some string <span class="subst">$&#123;<span class="keyword">var</span>&#125;</span>`</span> <span class="comment">// 外边包含的是``，不是单引号</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h3><ul>
+<li><code>网络请求返回数据正确，但是HTML标签赋值却没值。</code></li>
+<li>问题：检查数据是否有多层嵌套如data.xx.yy.zz，可能是VUE不够智能，它可能不能获取较深层的数据，一般最多两层。<ul>
+<li>解决：用一个新的变量接收</li>
+</ul>
+</li>
+<li><code>Uncaught TypeError: Cannot read property ‘substring‘ of undefined相关</code><ul>
+<li>问题：一般为调用如substring等方法的字段未undefined，所以整体也会报undefined</li>
+<li>解决：对不能自动处理undefined的字段进行判断，null判断，undefined等判断</li>
+</ul>
+</li>
+<li><code>van-overlay</code>不能拖动滚动<ul>
+<li>解决：vant版本太低，需要升级到<code>2.6.2</code>以上，设置<code>:lock-scroll=false</code></li>
+</ul>
+</li>
+<li>纯数字或纯字母不换行<ul>
+<li>问题：被认为是一个数字（纯数字）或者一个单词（纯字母）</li>
+<li>解决：CSS样式加上<code>word-break: break-all</code></li>
+</ul>
 </li>
 </ul>
 
