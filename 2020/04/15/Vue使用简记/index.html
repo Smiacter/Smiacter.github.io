@@ -261,8 +261,8 @@
 </li>
 </ul>
 <h3 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h3><ul>
-<li><code>网络请求返回数据正确，但是HTML标签赋值却没值。</code></li>
-<li>问题：检查数据是否有多层嵌套如data.xx.yy.zz，可能是VUE不够智能，它可能不能获取较深层的数据，一般最多两层。<ul>
+<li><code>网络请求返回数据正确，但是HTML标签赋值却没值。</code><ul>
+<li>问题：检查数据是否有多层嵌套如data.xx.yy.zz，可能是VUE不够智能，它可能不能获取较深层的数据，一般最多两层。</li>
 <li>解决：用一个新的变量接收</li>
 </ul>
 </li>
@@ -278,6 +278,15 @@
 <li>纯数字或纯字母不换行<ul>
 <li>问题：被认为是一个数字（纯数字）或者一个单词（纯字母）</li>
 <li>解决：CSS样式加上<code>word-break: break-all</code></li>
+</ul>
+</li>
+<li>传参prop值变化，但是组件显示没变<ul>
+<li>问题：组件绑定的是data的值</li>
+<li>解决，将data绑定改为computed</li>
+</ul>
+</li>
+<li>Vue默认创建的项目，布局在手机上从状态栏下面开始<ul>
+<li>解决：在public/index.html中对应viewport的meta标签加上<code>viewport-fit=cover</code>，确保视图缩放填充整个屏幕</li>
 </ul>
 </li>
 </ul>
