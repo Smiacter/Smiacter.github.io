@@ -204,8 +204,8 @@
 <li>使用pod方式引入BaiduNaviKit，即在podspec中添加导航pod包</li>
 </ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s.dependency &apos;BaiduNaviKit&apos;</span><br></pre></td></tr></table></figure>
-<p>问题：百度导航SDK在swift文件中无法通过import BaiduNaviKit的形式引入。在普通的Swift和OC混编工程中，可以通过桥接文件xxx-Bridging-Header.h引入，但是在pod开发中是不支持桥接文件的。</p>
-<p>解决：尝试通过<a href="https://lingjye.com/2018/06/18/Component-problem/中提到的通过设置`private_header_files`的方式来充当桥接文件" target="_blank" rel="noopener">https://lingjye.com/2018/06/18/Component-problem/中提到的通过设置`private_header_files`的方式来充当桥接文件</a></p>
+<p><strong>问题</strong>：百度导航SDK在swift文件中无法通过import BaiduNaviKit的形式引入。在普通的Swift和OC混编工程中，可以通过桥接文件xxx-Bridging-Header.h引入，但是在pod开发中是不支持桥接文件的。</p>
+<p><strong>解决</strong>：尝试通过 <a href="https://lingjye.com/2018/06/18/Component-problem/" target="_blank" rel="noopener">https://lingjye.com/2018/06/18/Component-problem/</a> 中提到的通过设置<code>private_header_files</code>的方式来充当桥接文件</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># podspec配置</span><br><span class="line">s.private_header_files = &apos;Classes/BridgeHeader.h&apos;</span><br></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// 自定义的头文件，尝试充当桥接文件，引入导航相关头文件</span><br><span class="line">#ifndef BridgeHeader_h</span><br><span class="line">#define BridgeHeader_h</span><br><span class="line"></span><br><span class="line">#import &quot;BNaviService.h&quot;</span><br><span class="line">#import &lt;BaiduMapAPI_Base/BMKBaseComponent.h&gt;</span><br><span class="line"></span><br><span class="line">#endif /* BridgeHeader_h */</span><br></pre></td></tr></table></figure>
 <p>但是pod install之后在umbrella.h中并没有引入自定义的BridgeHeader.h文件，自然也就没法使用。不知道哪里没有设置正确，如果有pod配置方面比较熟悉的朋友，欢迎提出正确的解决方法。</p>
@@ -213,9 +213,9 @@
 <li>使用手动引入Framework的方式，如以下配置：</li>
 </ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># BaiduNaviSDK/NaviSDK/inc/*.h 引入导航头文件</span><br><span class="line">s.source_files = &apos;Classes/**/*&apos;, &apos;BaiduNaviSDK/NaviSDK/inc/*.h&apos;</span><br><span class="line"># 引入导航相关的.a和.framework包</span><br><span class="line">s.vendored_libraries  = &apos;BaiduNaviSDK/**/*.a&apos;</span><br><span class="line">s.vendored_frameworks = &apos;BaiduNaviSDK/**/*.framework&apos;</span><br><span class="line"># 不使用pod依赖，注释掉</span><br><span class="line"># s.dependency &apos;BaiduNaviKit&apos;</span><br></pre></td></tr></table></figure>
-<p>问题：报错<code>Include of non-modular header inside framework module &#39;baidu_map.BridgeHeader</code>，因为导航依赖了百度地图基础库，即在NaviSDK中的头文件中引用了百度地图的头文件，如在<code>BNaviService.h</code>中引入了<code>#import &lt;BaiduMapAPI_Map/BMKMapView.h&gt;</code>就会报错。</p>
-<p>解决：暂时不知道怎么解决，我猜只有百度官方更新更好的适配Swift才行。</p>
-<p>期望：</p>
+<p><strong>问题</strong>：报错<code>Include of non-modular header inside framework module &#39;baidu_map.BridgeHeader</code>，因为导航依赖了百度地图基础库，即在NaviSDK中的头文件中引用了百度地图的头文件，如在<code>BNaviService.h</code>中引入了<code>#import &lt;BaiduMapAPI_Map/BMKMapView.h&gt;</code>就会报错。</p>
+<p><strong>解决</strong>：暂时不知道怎么解决，我猜只有百度官方更新更好的适配Swift才行。</p>
+<p><strong>期望</strong>：</p>
 <ol>
 <li>官方的导航SDK支持import module的形式，可以让Swift直接调用</li>
 <li>官方更改目前.h与.a .framework混合的方式，导航SDK统一采用和地图、定位一样的纯framework方式，满足手动配置的需求</li>
@@ -237,7 +237,7 @@
 <p>但是会发现导航没有声音，及时我在百度AI开放平台注册了和地图BundleID一样的应用，同时也参考官方文档申请了免费额度的语音合成服务。在导航初始化时调用TTS授权代码，其回调的结果永远是<code>NO</code>不成功。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[[BNaviService getInstance] authorizeTTSAppId:ttsAppId apiKey:ttsApiKey secretKey:ttsSecretKey completion:^(BOOL ttsResult) &#123;</span><br><span class="line">		// ttsResult结果为NO，使用的AI开放平台正确的Key</span><br><span class="line">    NSLog(@&quot;authorizeTTS ret = %d&quot;,ttsResult);</span><br><span class="line">&#125;];</span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>百度官方的文档比较老了，语音播报模块TTS授权管理还是<a href="http://yuyin.baidu.com/app，跳转后是到AI开放平台，其使用说明和文档的出入还是比较大。现在的AI开放平台功能更复杂，很多也需要付费。我申请了语音模块，没有付费，申请了免费额度，不知道是不是这个原因造成的没有声音。为了这个问题，专门提了工单，建议更新下文档，提供下解决方案。官方答复检查Product" target="_blank" rel="noopener">http://yuyin.baidu.com/app，跳转后是到AI开放平台，其使用说明和文档的出入还是比较大。现在的AI开放平台功能更复杂，很多也需要付费。我申请了语音模块，没有付费，申请了免费额度，不知道是不是这个原因造成的没有声音。为了这个问题，专门提了工单，建议更新下文档，提供下解决方案。官方答复检查Product</a> Name是否为英文，我检查了工程也的确是英文的。</p>
+<p>百度官方的文档比较老了，语音播报模块TTS授权管理还是<a href="http://yuyin.baidu.com/app，" target="_blank" rel="noopener">http://yuyin.baidu.com/app，</a> 跳转后是到AI开放平台，其使用说明和文档的出入还是比较大。现在的AI开放平台功能更复杂，很多也需要付费。我申请了语音模块，没有付费，申请了免费额度，不知道是不是这个原因造成的没有声音。为了这个问题，专门提了工单，建议更新下文档，提供下解决方案。官方答复检查Product Name是否为英文，我检查了工程也的确是英文的。</p>
 </blockquote>
 <p><strong>解决：使用内置的TTS语音播报功能</strong></p>
 <p>下载了官方的导航demo，使用自己的BundleID和相关的Key包括TTS相关Key，运行起来是有导航声音的，但是断点查看TTS授权代码回调结果依旧是<code>NO</code>。</p>
