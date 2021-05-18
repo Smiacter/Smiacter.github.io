@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Smiacter">
+
+
+    <meta name="subtitle" content="Simple is real and totally enough">
+
+
+    <meta name="description" content="Recording, learning">
+
+
+    <meta name="keywords" content="iOS, blockchain, 杂谈，basketball">
+
+
+<title>百度地图导航Flutter插件 | Smiacter&#39;s blog</title>
+
+
+
+    <link rel="icon" href="/images/basketball.svg">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Master Kang</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Master Kang</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">百度地图导航Flutter插件</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Smiacter</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">May 18, 2021&nbsp;&nbsp;10:05:36</a>
+                        </span>
+                    
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <p><img src="https://images.unsplash.com/photo-1604357209793-fca5dca89f97?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bWFwfGVufDB8fDB8fA%3D%3D&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=800&amp;q=60" alt="navi"></p>
+<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在国内地图使用最多的应该是高德和百度，对于Flutter来说高德地图在两年前就有了比较成熟方便使用的三方库。反观百度地图，去年上半年的时候开始推出Flutter版本，但是是手动集成的，今年再来看已经有了定位、地图、鹰眼的Flutter版本，而且是通过pub管理的。今年有个项目只需要百度地图的导航功能，但是官方恰恰就没有提供，搜了一下网上好像也没有相关的库。所以就动手自己封了一个简单的百度导航插件，由于自身以前是iOS开发，所以暂时只提供了iOS端的插件，Android方面待后续完善，也希望有此需求的Android开发能够帮忙完善。</p>
+<h3 id="百度地图导航iOS端开发"><a href="#百度地图导航iOS端开发" class="headerlink" title="百度地图导航iOS端开发"></a>百度地图导航iOS端开发</h3><h4 id="Swift尝试"><a href="#Swift尝试" class="headerlink" title="Swift尝试"></a>Swift尝试</h4><p>由于平时开发中主要是使用Swift，所以一开始创建Flutter插件的时候就选择的Swift进行开发。但是在这个过程中遇到一些问题，主要是库引入相关。</p>
+<ol>
+<li>使用pod方式引入BaiduNaviKit，即在podspec中添加导航pod包</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s.dependency &apos;BaiduNaviKit&apos;</span><br></pre></td></tr></table></figure>
+<p>问题：百度导航SDK在swift文件中无法通过import BaiduNaviKit的形式引入。在普通的Swift和OC混编工程中，可以通过桥接文件xxx-Bridging-Header.h引入，但是在pod开发中是不支持桥接文件的。</p>
+<p>解决：尝试通过<a href="https://lingjye.com/2018/06/18/Component-problem/中提到的通过设置`private_header_files`的方式来充当桥接文件" target="_blank" rel="noopener">https://lingjye.com/2018/06/18/Component-problem/中提到的通过设置`private_header_files`的方式来充当桥接文件</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># podspec配置</span><br><span class="line">s.private_header_files = &apos;Classes/BridgeHeader.h&apos;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// 自定义的头文件，尝试充当桥接文件，引入导航相关头文件</span><br><span class="line">#ifndef BridgeHeader_h</span><br><span class="line">#define BridgeHeader_h</span><br><span class="line"></span><br><span class="line">#import &quot;BNaviService.h&quot;</span><br><span class="line">#import &lt;BaiduMapAPI_Base/BMKBaseComponent.h&gt;</span><br><span class="line"></span><br><span class="line">#endif /* BridgeHeader_h */</span><br></pre></td></tr></table></figure>
+<p>但是pod install之后在umbrella.h中并没有引入自定义的BridgeHeader.h文件，自然也就没法使用。不知道哪里没有设置正确，如果有pod配置方面比较熟悉的朋友，欢迎提出正确的解决方法。</p>
+<ol start="2">
+<li>使用手动引入Framework的方式，如以下配置：</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># BaiduNaviSDK/NaviSDK/inc/*.h 引入导航头文件</span><br><span class="line">s.source_files = &apos;Classes/**/*&apos;, &apos;BaiduNaviSDK/NaviSDK/inc/*.h&apos;</span><br><span class="line"># 引入导航相关的.a和.framework包</span><br><span class="line">s.vendored_libraries  = &apos;BaiduNaviSDK/**/*.a&apos;</span><br><span class="line">s.vendored_frameworks = &apos;BaiduNaviSDK/**/*.framework&apos;</span><br><span class="line"># 不使用pod依赖，注释掉</span><br><span class="line"># s.dependency &apos;BaiduNaviKit&apos;</span><br></pre></td></tr></table></figure>
+<p>问题：报错<code>Include of non-modular header inside framework module &#39;baidu_map.BridgeHeader</code>，因为导航依赖了百度地图基础库，即在NaviSDK中的头文件中引用了百度地图的头文件，如在<code>BNaviService.h</code>中引入了<code>#import &lt;BaiduMapAPI_Map/BMKMapView.h&gt;</code>就会报错。</p>
+<p>解决：暂时不知道怎么解决，我猜只有百度官方更新更好的适配Swift才行。</p>
+<p>期望：</p>
+<ol>
+<li>官方的导航SDK支持import module的形式，可以让Swift直接调用</li>
+<li>官方更改目前.h与.a .framework混合的方式，导航SDK统一采用和地图、定位一样的纯framework方式，满足手动配置的需求</li>
+</ol>
+<h4 id="转用OC"><a href="#转用OC" class="headerlink" title="转用OC"></a>转用OC</h4><p>因为上述情况，Swift并不能很方便的接入百度导航。想到OC可以直接引入其头文件，省去了桥接、库引用带来的各种问题，固重新建了以OC为开发语言的Flutter插件。</p>
+<h4 id="接入方式选择，pod和Framework手动"><a href="#接入方式选择，pod和Framework手动" class="headerlink" title="接入方式选择，pod和Framework手动"></a>接入方式选择，pod和Framework手动</h4><p>因为OC可以直接引用头文件，所以直接选择了pod引入的方式，目前指定了最新的6.2.0版本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s.dependency &apos;BaiduNaviKit&apos;, &apos;6.2.0&apos;</span><br></pre></td></tr></table></figure>
+<h4 id="静态库配置问题"><a href="#静态库配置问题" class="headerlink" title="静态库配置问题"></a>静态库配置问题</h4><p>加入pod依赖install后，.podspec不做任何额外配置的情况下，还是遇到了一些报错(警告)：</p>
+<ol>
+<li><code>The ‘Pods-XXX‘ target has transitive dependencies that include statically linked binaries</code></li>
+</ol>
+<p>这个错误就是百度导航SDK里面用到的.a .framework是静态库的原因</p>
+<ol start="2">
+<li><code>Undefined symbols for architecture arm64</code></li>
+</ol>
+<p>以上两个问题可通过配置static_framework = true解决，即</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s.static_framework = true</span><br></pre></td></tr></table></figure>
+<h4 id="百度导航语音问题"><a href="#百度导航语音问题" class="headerlink" title="百度导航语音问题"></a>百度导航语音问题</h4><p>解决库的引入依赖问题后，参考百度官方的文档编写导航相关的代码，使用正确的地图应用AppKey授权导航，即可以正常的在应用内使用导航功能，授权代码调用<code>authorizeNaviAppKey</code>。</p>
+<p>但是会发现导航没有声音，及时我在百度AI开放平台注册了和地图BundleID一样的应用，同时也参考官方文档申请了免费额度的语音合成服务。在导航初始化时调用TTS授权代码，其回调的结果永远是<code>NO</code>不成功。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[[BNaviService getInstance] authorizeTTSAppId:ttsAppId apiKey:ttsApiKey secretKey:ttsSecretKey completion:^(BOOL ttsResult) &#123;</span><br><span class="line">		// ttsResult结果为NO，使用的AI开放平台正确的Key</span><br><span class="line">    NSLog(@&quot;authorizeTTS ret = %d&quot;,ttsResult);</span><br><span class="line">&#125;];</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>百度官方的文档比较老了，语音播报模块TTS授权管理还是<a href="http://yuyin.baidu.com/app，跳转后是到AI开放平台，其使用说明和文档的出入还是比较大。现在的AI开放平台功能更复杂，很多也需要付费。我申请了语音模块，没有付费，申请了免费额度，不知道是不是这个原因造成的没有声音。为了这个问题，专门提了工单，建议更新下文档，提供下解决方案。官方答复检查Product" target="_blank" rel="noopener">http://yuyin.baidu.com/app，跳转后是到AI开放平台，其使用说明和文档的出入还是比较大。现在的AI开放平台功能更复杂，很多也需要付费。我申请了语音模块，没有付费，申请了免费额度，不知道是不是这个原因造成的没有声音。为了这个问题，专门提了工单，建议更新下文档，提供下解决方案。官方答复检查Product</a> Name是否为英文，我检查了工程也的确是英文的。</p>
+</blockquote>
+<p><strong>解决：使用内置的TTS语音播报功能</strong></p>
+<p>下载了官方的导航demo，使用自己的BundleID和相关的Key包括TTS相关Key，运行起来是有导航声音的，但是断点查看TTS授权代码回调结果依旧是<code>NO</code>。</p>
+<p>对比了下两者的区别，官方demo是采用手动配置SDK的方式，对比发现其使用了带TTS相关的静态库和资源文件，所以基本可以猜测是使用的内置TTS语音播报。再去仔细看了下官方的文档，第一句话就说明了：<code>使用SDK内置百度TTS语音播报功能需要导入libBNTTSComponentSDK.a静态库，并且需要对应用进行授权验证才能够使用，因此需要主动注册应用相关信息</code>。</p>
+<blockquote>
+<p>注：使用内置的TTS播报功能，必须导入libBNTTSComponentSDK.a静态库和baiduTTSSDK.bundle资源文件。而且必须要注册TTS相关的Key，一个很奇怪的现象是：使用了Key调用TTS授权代码，回调仍然是NO不成功，但是会有导航声音，如果不传任何的Key，就会没有导航声音。而且我iOS申请的TTS Key拿给Android用也能生效，导航有声音（包名不同）。所以对TTS授权这些Key的实际使用和相关准确配置现在都还有一个问号。现在能保证的是传入申请的Key，使用内置语音奏效！</p>
+</blockquote>
+<p><strong>插件中配置声音</strong></p>
+<p>插件中是使用pod的方式接入的导航SDK，里面是没有内置TTS相关静态库和资源文件的，于是就想到了直接将这两个声音依赖文件引入。将官方下载的<code>libBNTTSComponentSDK.a</code>和<code>baiduTTSSDK.bundle</code>拷贝到了插件开发目录中（新建了Libs和Resources文件夹存放），并配置了.podspec文件如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 配置静态库，此处只有libBNTTSComponentSDK.a</span><br><span class="line">s.vendored_libraries  = &apos;Libs/*.a&apos;</span><br><span class="line"># 配置资源文件，此处只有baiduTTSSDK.bundle</span><br><span class="line">s.resource = [&apos;Resources/*.bundle&apos;]</span><br></pre></td></tr></table></figure>
+<p>至此，导航有声音了，整个插件开发流程也就圆满了，再次附上关键的.podspec配置：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">s.dependency &apos;BaiduNaviKit&apos;, &apos;6.2.0&apos;</span><br><span class="line">s.vendored_libraries  = &apos;Libs/*.a&apos;</span><br><span class="line">s.resource = [&apos;Resources/*.bundle&apos;]</span><br><span class="line">s.static_framework = true</span><br></pre></td></tr></table></figure>
+<h3 id="开启Background-Modes-gt-Location-updates"><a href="#开启Background-Modes-gt-Location-updates" class="headerlink" title="开启Background Modes -&gt; Location updates"></a>开启Background Modes -&gt; Location updates</h3><p>注意：根据官方文档，在接入自己的应用时不要忘了在<code>Signing&amp;Capabilities</code>中添加<code>Background Mode</code>，选中<code>Location updates</code>，导航是需要后台播放更新的，使用过导航的都应该知道这个常识。如果不设置的话开始导航时会崩溃！</p>
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><h3 id="TODO-Android"><a href="#TODO-Android" class="headerlink" title="TODO: Android"></a>TODO: Android</h3><h3 id="sss"><a href="#sss" class="headerlink" title="sss"></a>sss</h3><p>以上纯粹是个人的一些尝试与感悟，并没有对百度地图，pod开发与配置有太深入的研究，如有什么不对的地方，还请指出，我下来再专研专研。感谢！</p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Confidence makes perfect!</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/Flutter/"># Flutter</a>
+                    
+                        <a href="/tags/iOS/"># iOS</a>
+                    
+                        <a href="/tags/百度地图/"># 百度地图</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2021/04/26/Swift面容指纹识别LAManager/">Swift面容指纹识别LAManager</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Smiacter | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>
