@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Smiacter">
+
+
+    <meta name="subtitle" content="Simple is real and totally enough">
+
+
+    <meta name="description" content="Recording, learning">
+
+
+    <meta name="keywords" content="iOS, blockchain, 杂谈，basketball">
+
+
+<title>Flutter_iOS常见问题 | Smiacter&#39;s blog</title>
+
+
+
+    <link rel="icon" href="/images/basketball.svg">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 7.1.1"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Master Kang</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Master Kang</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">Flutter_iOS常见问题</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Smiacter</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">April 14, 2020&nbsp;&nbsp;10:23:59</a>
+                        </span>
+                    
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>Flutter开发中，iOS相关的常见问题，持续更新~</p>
+<h3 id="pub-flutter-io-cn缓存目录"><a href="#pub-flutter-io-cn缓存目录" class="headerlink" title="pub.flutter-io.cn缓存目录"></a>pub.flutter-io.cn缓存目录</h3><p>点击每个项目的.packages即可查看，其所有的本地依赖包的缓存地址，我的地址为：</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[Flutter Path]/.pub-cache/hosted/xxxpackage</span><br></pre></td></tr></table></figure>
+
+<p>PS：另外还有个老目录在&#x2F;Users&#x2F;smiacter&#x2F;.pub-cache，为之前使用fvm时遗留下来的，应该没有用</p>
+<h3 id="安装Flutter-SDK后运行Flutter-doctor报错"><a href="#安装Flutter-SDK后运行Flutter-doctor报错" class="headerlink" title="安装Flutter SDK后运行Flutter doctor报错"></a>安装Flutter SDK后运行Flutter doctor报错</h3><ol>
+<li>“dart” can’t be opened because Apple cannot check it for malicious software.</li>
+</ol>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 解决方法，终端输入以下命令，重新执行flutter doctorming&#x27;ling</span></span><br><span class="line">sudo spctl --master-disable</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>“idevice_id” cannot be opened because the developer cannot be verified</li>
+</ol>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 解决方法，去设置允许权限，具体操作</span></span><br><span class="line"><span class="number">1.</span> 进入 system preference -&gt; Security &amp; Privacy </span><br><span class="line"><span class="number">2.</span> 在Allow apps downloaded from下面AppStore and identified developers 中同意（always allow），如果当时没有弹出来，可以退出了再进去查看</span><br><span class="line"><span class="number">3.</span> 再次执行Flutter doctor，如果是和idevice_id一样的权限问题，依次同意权限即可</span><br><span class="line">  </span><br><span class="line"><span class="comment">// 另外一个方法 参考 https://medium.com/@alexandrosbaramilis/setting-up-flutter-on-macos-catalina-d023df8845ae</span></span><br><span class="line">For <span class="string">&quot;idevice_id&quot;</span> error:</span><br><span class="line">sudo xattr -d com.apple.quarantine /Users/Your_User/Your_Dev_Folder/flutter/bin/cache/artifacts/libimobiledevice/idevice_id</span><br><span class="line">For <span class="string">&quot;ideviceinfo&quot;</span> error:</span><br><span class="line">sudo xattr -d com.apple.quarantine /Users/Your_User/Your_Dev_Folder/flutter/bin/cache/artifacts/libimobiledevice/ideviceinfo</span><br><span class="line">For <span class="string">&quot;idevicesyslog&quot;</span> error:</span><br><span class="line">sudo xattr -d com.apple.quarantine /Users/Your_User/Your_Dev_Folder/flutter/bin/cache/artifacts/libimobiledevice/idevicesyslog</span><br><span class="line">For <span class="string">&quot;iproxy&quot;</span> error:</span><br><span class="line">sudo xattr -d com.apple.quarantine /Users/Your_User/Your_Dev_Folder/flutter/bin/cache/artifacts/usbmuxd/iproxy</span><br></pre></td></tr></table></figure>
+
+<h3 id="VSCode-iOS设置启动不了-报Error-connecting-to-the-service-protocol-failed-to-connect-to-http-127-0-0-1-1029-89AGRYqn-pA-【Xcode没问题】"><a href="#VSCode-iOS设置启动不了-报Error-connecting-to-the-service-protocol-failed-to-connect-to-http-127-0-0-1-1029-89AGRYqn-pA-【Xcode没问题】" class="headerlink" title="VSCode iOS设置启动不了 报Error connecting to the service protocol: failed to connect to http://127.0.0.1:1029/89AGRYqn_pA 【Xcode没问题】"></a>VSCode iOS设置启动不了 报Error connecting to the service protocol: failed to connect to <a href="http://127.0.0.1:1029/89AGRYqn_pA">http://127.0.0.1:1029/89AGRYqn_pA</a> 【Xcode没问题】</h3><p>目前暂时没有找到好的方法，官方issue的答复大概是在Dev分支上得到了解决。把电脑的代理和网络关了，在模拟器上成功跑起来过一次，好多人的回答就是禁用WiFi等网络设置。</p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Confidence makes perfect!</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/Flutter/"># Flutter</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2020/04/14/%E8%81%8A%E5%A4%A9%E6%84%9F%E6%83%B3-%E7%A7%AF%E6%9E%81%E7%9A%84%E5%AD%A6%E4%B9%A0%EF%BC%8C%E5%8A%AA%E5%8A%9B%E7%9A%84%E6%8F%90%E5%8D%87/">聊天感想-积极的学习，努力的提升</a>
+            
+            
+            <a class="next" rel="next" href="/2020/04/13/WebView%E4%B8%8EJS%E4%BA%A4%E4%BA%92/">Flutter WebView与JS（Vue）交互</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Smiacter | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

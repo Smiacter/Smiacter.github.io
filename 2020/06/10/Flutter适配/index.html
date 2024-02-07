@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Smiacter">
+
+
+    <meta name="subtitle" content="Simple is real and totally enough">
+
+
+    <meta name="description" content="Recording, learning">
+
+
+    <meta name="keywords" content="iOS, blockchain, 杂谈，basketball">
+
+
+<title>Flutter适配 | Smiacter&#39;s blog</title>
+
+
+
+    <link rel="icon" href="/images/basketball.svg">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 7.1.1"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Master Kang</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Master Kang</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">Flutter适配</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Smiacter</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">June 10, 2020&nbsp;&nbsp;17:54:02</a>
+                        </span>
+                    
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>Flutter开发中，涉及到适配相关的解决方案，持续更新~</p>
+<h3 id="已适配"><a href="#已适配" class="headerlink" title="已适配"></a>已适配</h3><ul>
+<li>本地图片资源多分辨率适配</li>
+<li>启动图适配</li>
+<li>深色模式适配</li>
+</ul>
+<h3 id="本地图片资源多分辨率适配"><a href="#本地图片资源多分辨率适配" class="headerlink" title="本地图片资源多分辨率适配"></a>本地图片资源多分辨率适配</h3><p>本地图片资源适配，资源目录假设为assets&#x2F;images</p>
+<p>支持多倍图，常见的2倍和3倍，可以在images目录下新建2.0x和3.0x文件夹分别放同名文件</p>
+<p>在pubspec.yaml中配置assets</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">assets:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">assets/images/</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">assets/images/2.0x/</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">assets/images/3.0x/</span></span><br></pre></td></tr></table></figure>
+
+<p>images&#x2F;目录下代表1倍图，如果需要像上述配置，必须在该目录下配置1倍图。【有些UI没有切1倍图，我的做法是把二倍图全部拷到images目录下充当1倍图，因为现在需要1倍图的手机几乎没有了】</p>
+<p>经过实践，多倍图2.0x 3.0x中也可以添加文件夹，方便归类。(上述的做法是将所有的图片放到了不同分辨率目录下而已)</p>
+<blockquote>
+<p>最佳实践应该是通过在不同分辨率文件夹下建立分类文件夹，结构如下：</p>
+</blockquote>
+<h4 id="资源目录配置"><a href="#资源目录配置" class="headerlink" title="资源目录配置"></a>资源目录配置</h4><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">-</span> <span class="string">assets</span></span><br><span class="line">   <span class="bullet">-</span> <span class="string">images</span>   <span class="string">//</span> <span class="string">存放本地图片资源文件夹</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">type1</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">type2</span>   <span class="string">//</span> <span class="string">分类文件夹，和2.0x和3.0x中的文件夹名一致。注意这些文件在是和2.0x和3.0x同级的，代表1倍图，必须添加！</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">typeN</span></span><br><span class="line">    <span class="bullet">-</span> <span class="number">2.</span><span class="string">0x</span>    <span class="string">//</span> <span class="string">二倍图存放处</span></span><br><span class="line">     <span class="bullet">-</span> <span class="string">type1</span>  </span><br><span class="line">     <span class="bullet">-</span> <span class="string">type2</span>  <span class="string">//</span> <span class="string">分类文件夹，和3.0x和images中(代表1倍图)的文件夹名一致</span></span><br><span class="line">     <span class="bullet">-</span> <span class="string">typeN</span></span><br><span class="line">    <span class="bullet">-</span> <span class="number">3.</span><span class="string">0x</span>    <span class="string">//</span> <span class="string">三倍图存放处</span></span><br><span class="line">     <span class="bullet">-</span> <span class="string">type1</span></span><br><span class="line">     <span class="bullet">-</span> <span class="string">type2</span>  <span class="string">//</span> <span class="string">分类文件夹，和2.0x和images中(代表1倍图)的文件夹名一致</span></span><br><span class="line">     <span class="bullet">-</span> <span class="string">typeN</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="pubspec-yaml配置"><a href="#pubspec-yaml配置" class="headerlink" title="pubspec.yaml配置"></a>pubspec.yaml配置</h4><blockquote>
+<p>在pubspec.yaml中配置图片路径时，如果是配的文件夹，一定不要忘了加’&#x2F;‘</p>
+</blockquote>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">assets:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">assets/images/type1/</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">assets/images/type2/</span>        <span class="comment"># 1倍图配置【一定不要忘了加&#x27;/&#x27;】</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">assets/images/typeN/</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">assets/images/2.0x/type1/</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">assets/images/2.0x/type2/</span>   <span class="comment"># 2倍图配置【一定不要忘了加&#x27;/&#x27;】</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">assets/images/2.0x/typeN/</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">assets/images/3.0x/type1/</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">assets/images/3.0x/type2/</span>   <span class="comment"># 3倍图配置【一定不要忘了加&#x27;/&#x27;】</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">assets/images/3.0x/typeN/</span></span><br></pre></td></tr></table></figure>
+
+<p><code>备用，不推荐</code> 如果在一倍图即assets&#x2F;images目录下没有配置图片，则要在pubspec.yaml中把图片名挨个声明一次（不推荐，太繁琐，不整洁），如：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">assets:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">assets/images/</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">assets/images/tab_chat_off.png</span>   <span class="comment"># 即使images目录下没有该图片，也需要声明，Flutter通过该名字查找，找不到去找其他倍数的资源</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">assets/images/tab_chat_on.png</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">assets/images/tab_discover_off.png</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">assets/images/tab_discover_on.png</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">assets/images/tab_me_off.png</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">assets/images/tab_square_off.png</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">assets/images/tab_square_on.png</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">assets/images/2.0x/</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">assets/images/3.0x/</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="启动图适配"><a href="#启动图适配" class="headerlink" title="启动图适配"></a>启动图适配</h3><p><code>实现效果：启动图一启动，全屏显示，状态栏也不会显示，程序启动后，显示状态栏，不出现启动图跳跃的问题</code></p>
+<blockquote>
+<p>安卓</p>
+</blockquote>
+<ol>
+<li><code>android &gt; app &gt; src &gt; main &gt; res &gt; values &gt; styles.xml</code>【设置LaunchTheme】</li>
+</ol>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">name</span>=<span class="string">&quot;LaunchTheme&quot;</span> <span class="attr">parent</span>=<span class="string">&quot;@android:style/Theme.Black.NoTitleBar&quot;</span>&gt;</span><span class="language-xml"></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">&quot;android:windowBackground&quot;</span>&gt;</span>@drawable/launch_background<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="comment">&lt;!--加上这句配置，确保LaunchTheme和NormalTheme过渡没有跳一下的感觉--&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">&quot;android:windowDisablePreview&quot;</span>&gt;</span>true<span class="tag">&lt;/<span class="name">item</span>&gt;</span> </span></span><br><span class="line"><span class="language-xml"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><code>android &gt; app &gt; src &gt; main &gt; res &gt; drawable &gt; launch_background.xml</code>【配置启动图样式】</li>
+</ol>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">layer-list</span> <span class="attr">xmlns:android</span>=<span class="string">&quot;http://schemas.android.com/apk/res/android&quot;</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 背景色，我们设置了启动图就可以不用 --&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- &lt;item android:drawable=&quot;@android:color/white&quot; /&gt; --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">item</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">bitmap</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:gravity</span>=<span class="string">&quot;fill&quot;</span> &lt;!<span class="attr">--</span> <span class="attr">设置启动图的伸展方式</span> <span class="attr">--</span>&gt;</span></span><br><span class="line">            android:src=&quot;@mipmap/splash&quot; /&gt; <span class="comment">&lt;!-- 指定启动图，请在不同分辨率目录下防止不同的图片，这里的启动图名字叫splash --&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">item</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">layer-list</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li><code>android &gt; app &gt; src &gt; main &gt; AndroidManifest.xml</code>【检查设置launch_background是否配置】</li>
+</ol>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">activity</span></span></span><br><span class="line"><span class="tag">        <span class="attr">...其他配置...</span></span></span><br><span class="line"><span class="tag">        &lt;<span class="attr">meta-data</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:name</span>=<span class="string">&quot;io.flutter.embedding.android.SplashScreenDrawable&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:resource</span>=<span class="string">&quot;@drawable/launch_background&quot;</span> /&gt;</span> <span class="comment">&lt;!-- 使用drawable/launch_background作为启动图，一般默认会配置 --&gt;</span></span><br><span class="line">        ...其他配置...</span><br><span class="line"><span class="tag">&lt;/<span class="name">activity</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li><code>android &gt; app &gt; src &gt; main &gt; 找到MainActivity.kt</code>【设置状态栏的隐藏于显示控制代码 不同IDE该文件的路径显示不同，能找到就行】</li>
+</ol>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 引入头文件</span></span><br><span class="line"><span class="keyword">import</span> android.os.Bundle</span><br><span class="line"><span class="keyword">import</span> android.view.WindowManager</span><br><span class="line"></span><br><span class="line"><span class="comment">// 重写onCreate和onFlutterUiDisplayed方法，控制状态栏显隐</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MainActivity</span>: <span class="type">FlutterActivity</span>() &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">/// 启动默认隐藏状态栏</span></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onCreate</span><span class="params">(savedInstanceState: <span class="type">Bundle</span>?)</span></span> &#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState)</span><br><span class="line"></span><br><span class="line">        <span class="comment">// window.statusBarColor = 0x00000000; // 修改装填栏颜色，如有需求</span></span><br><span class="line">        window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/// 显示Flutter界面后显示状态栏</span></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onFlutterUiDisplayed</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="keyword">super</span>.onFlutterUiDisplayed()</span><br><span class="line">        window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li><p><code>备用</code>其他设置。因为不同的Flutter版本，配置好像也不一样，以下配置记录备用，在没有达到效果的情况下可尝试添加</p>
+<ol>
+<li><p>使用NormalTheme，Flutter启动是先走LaunchTheme，然后走NormalTheme，如果没有NormalTheme，则会继续显示LaunchTheme，所以按道理来说上述四点设置了就OK。添加NormalTheme的地方有：</p>
+<p>styles.xml中：</p>
+</li>
+</ol>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">name</span>=<span class="string">&quot;NormalTheme&quot;</span> <span class="attr">parent</span>=<span class="string">&quot;Theme.MaterialComponents.DayNight&quot;</span>&gt;</span><span class="language-xml"></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">&quot;android:windowBackground&quot;</span>&gt;</span>@drawable/normal_background<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>​	drawable目录下，即launch_background.xml同级目录添加normal_background.xml，内容和launch_background一样</p>
+<p>​	AndroidManifest.xml中：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta-data</span><br><span class="line">        android:name=&quot;io.flutter.embedding.android.NormalTheme&quot;</span><br><span class="line">        android:resource=&quot;@style/NormalTheme&quot; /&gt;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>AndroidManifest.xml中设置SplashScreenUntilFirstFrame</li>
+</ol>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta-data</span></span></span><br><span class="line"><span class="tag">      <span class="attr">android:name</span>=<span class="string">&quot;io.flutter.app.android.SplashScreenUntilFirstFrame&quot;</span></span></span><br><span class="line"><span class="tag">      <span class="attr">android:value</span>=<span class="string">&quot;true&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>参考</p>
+<p>flutter_native_splash插件实现方式，查看器代码工程配置，但是是老版本，设置状态栏的显示和隐藏方法不一样，用的老API</p>
+</li>
+</ol>
+<blockquote>
+<p>iOS</p>
+</blockquote>
+<ol>
+<li>LaunchScreen.storyboard中配置启动图，提供@2x和@3x，图片ContentMode设置为AspectFill</li>
+<li>工程名 &gt; General &gt; Deployment Info中勾选Hide status bar，隐藏状态栏</li>
+<li>AppDelegate中，在didFinishLaunchingWithOptions中加入显示状态栏代码：</li>
+</ol>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">UIApplication</span>.shared.setStatusBarHidden(<span class="literal">false</span>, with: .fade)</span><br></pre></td></tr></table></figure>
+
+<h3 id="深色模式适配"><a href="#深色模式适配" class="headerlink" title="深色模式适配"></a>深色模式适配</h3><ol>
+<li>在顶层一般为MyApp中对MaterialApp的theme&#x2F;darkTheme&#x2F;themeMode进行包裹监听比如使用<a href="https://pub.dev/packages/provider">Provider</a>，这样在应用内改变了就可以及时通知，使得整个应用响应theme变更，进行重新渲染</li>
+<li>MaterialApp中theme参数对应的是light主题的配置，可以配置整个应用浅色相关的themeData</li>
+<li>MaterialApp中darkTheme参数对应的是dark主题的配置，可以配置整个应用深色相关的themeData</li>
+<li>MaterialApp中themeMode代表当前系统的颜色主题风格，有三种可选，light-浅色，dark-深色，system-跟随系统，正是通过这个themeMode做到颜色主题的判断进行构建。如果是跟随系统，则如果在设置更改了颜色模式，则再次进入App会自动检测到变更进行刷新。如果是在应用中设置了light或dark，则下次启动是从本地读取上次保存的颜色主题，确定themeMode，是light或者dark就不会跟随系统变化而变化【保存和读取配置一般通过shared_preferences等进行操作】</li>
+<li>通过Theme.of(context).brightness &#x3D;&#x3D; Brightness.dark进行颜色主题的判断，除了顶层配置的themeData（只能设置一些系统级的主题如导航栏、标题，分割线等），在实际业务中也需要适配，通过判断是否是dark进行不同颜色、不同图片的代码逻辑适配。</li>
+<li>Theme.of(context).brightness &#x3D;&#x3D; Brightness.dark中Brightness.dark是根据themeMode来判断的，是light就是light，是dark就是dark，如果是system就会根据系统设置而定</li>
+</ol>
+<blockquote>
+<p>TODO: 补上深色适配的代码</p>
+</blockquote>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Confidence makes perfect!</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/Flutter/"># Flutter</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2020/09/11/CSS%E5%B8%83%E5%B1%80%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0/">CSS布局系统学习</a>
+            
+            
+            <a class="next" rel="next" href="/2020/04/26/FlutterBoost%E4%BD%BF%E7%94%A8/">FlutterBoost使用</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Smiacter | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

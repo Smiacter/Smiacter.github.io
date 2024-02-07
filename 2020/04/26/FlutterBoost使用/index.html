@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Smiacter">
+
+
+    <meta name="subtitle" content="Simple is real and totally enough">
+
+
+    <meta name="description" content="Recording, learning">
+
+
+    <meta name="keywords" content="iOS, blockchain, 杂谈，basketball">
+
+
+<title>FlutterBoost使用 | Smiacter&#39;s blog</title>
+
+
+
+    <link rel="icon" href="/images/basketball.svg">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 7.1.1"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Master Kang</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Master Kang</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">FlutterBoost使用</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Smiacter</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">April 26, 2020&nbsp;&nbsp;15:39:49</a>
+                        </span>
+                    
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>FlutterBoost是阿里巴巴咸鱼推出的一套Native与Flutter混合框架，方便在<code>现有Native项目</code>中集成Flutter模块，官方声明，使用FlutterBoost就像原生使用WebView一样简单，它主要的有点是很好的解决了Native与Flutter之间混合跳转路由管理。</p>
+<h3 id="集成步骤"><a href="#集成步骤" class="headerlink" title="集成步骤"></a>集成步骤</h3><h4 id="1-选择项目文件夹"><a href="#1-选择项目文件夹" class="headerlink" title="1. 选择项目文件夹"></a>1. 选择项目文件夹</h4><h4 id="2-创建flutter-module"><a href="#2-创建flutter-module" class="headerlink" title="2. 创建flutter module"></a>2. 创建flutter module</h4><ul>
+<li>在该文件夹中，创建flutter module 命令：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flutter create -t module flutter_module(module名称)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>在module工程pubspec.yaml中加入FlutterBoost依赖，具体参照官方github</li>
+<li>在main.dart中初始化FlutterBoost，代码：</li>
+</ul>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@override</span></span><br><span class="line">Widget build(BuildContext context) &#123;</span><br><span class="line">  <span class="keyword">return</span> MaterialApp( </span><br><span class="line">    title: <span class="string">&#x27;Flutter Route example&#x27;</span>,</span><br><span class="line">    <span class="comment">// 这儿是初始化代码</span></span><br><span class="line">    builder: FlutterBoost.init(postPush: _onRoutePushed),</span><br><span class="line">    routes: &#123;</span><br><span class="line">      <span class="string">&quot;first&quot;</span>: (context) =&gt; FirstRouteWidget()</span><br><span class="line">    &#125;,</span><br><span class="line">    home: Container( </span><br><span class="line">      color: Colors.blue,</span><br><span class="line">    ),</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/// <span class="language-markdown">push回调</span></span></span><br><span class="line"><span class="keyword">void</span> _onRoutePushed(</span><br><span class="line">  <span class="built_in">String</span> pageName, <span class="built_in">String</span> uniqueId, <span class="built_in">Map</span> params, Route route, Future _) &#123;</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>在initState中注册所有涉及到路由跳转的url和界面关系，代码：</li>
+</ul>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@override</span></span><br><span class="line"><span class="keyword">void</span> initState() &#123;</span><br><span class="line">  <span class="keyword">super</span>.initState();</span><br><span class="line"></span><br><span class="line">  FlutterBoost.singleton.registerPageBuilders(&#123;</span><br><span class="line">    <span class="string">&#x27;first&#x27;</span>: (pageName, param, _) =&gt; FirstRouteWidget(),</span><br><span class="line">    <span class="string">&#x27;second&#x27;</span>: (pageName, param, _) =&gt; SecondRouteWidget(),</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-创建iOS项目"><a href="#3-创建iOS项目" class="headerlink" title="3. 创建iOS项目"></a>3. 创建iOS项目</h4><ul>
+<li>在该文件夹中，创建iOS项目，添加Podfile，在Podfile中加入flutter module的路径，Podfile内容如下：</li>
+</ul>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">platform :ios, <span class="string">&#x27;9.0&#x27;</span></span><br><span class="line">use_frameworks!</span><br><span class="line"></span><br><span class="line"># 引入flutter module</span><br><span class="line">flutter_application_path = <span class="string">&#x27;../flutter_module/&#x27;</span></span><br><span class="line">load File.join(flutter_application_path, <span class="string">&#x27;.ios&#x27;</span>, <span class="string">&#x27;Flutter&#x27;</span>, <span class="string">&#x27;podhelper.rb&#x27;</span>)</span><br><span class="line"></span><br><span class="line">target <span class="string">&#x27;BoostDemo&#x27;</span> <span class="keyword">do</span></span><br><span class="line"></span><br><span class="line">  # 安装Flutter module中的相关pod (暂时找到这种方法可用) </span><br><span class="line">  install_all_flutter_pods(flutter_application_path)</span><br><span class="line"></span><br><span class="line">  # 其他iOS项目需要的三方库，</span><br><span class="line">  # pod <span class="string">&#x27;SnapKit&#x27;</span></span><br><span class="line"></span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>运行pod install，成功后iOS工程中Pods下Development Pods文件夹中应该是会有Flutter、flutter_boost等文件夹</li>
+<li>网上说需要加script，我这边加了报错，最后没有加</li>
+<li>能够运行起来说明就集成成功了</li>
+</ul>
+<h4 id="4-在iOS项目中实现遵循FLBPlatform协议的类，该类用来控制整个路由，包括iOS跳Flutter、Flutter跳iOS，见后面详细解释"><a href="#4-在iOS项目中实现遵循FLBPlatform协议的类，该类用来控制整个路由，包括iOS跳Flutter、Flutter跳iOS，见后面详细解释" class="headerlink" title="4. 在iOS项目中实现遵循FLBPlatform协议的类，该类用来控制整个路由，包括iOS跳Flutter、Flutter跳iOS，见后面详细解释"></a>4. 在iOS项目中实现遵循FLBPlatform协议的类，该类用来控制整个路由，包括iOS跳Flutter、Flutter跳iOS，见后面详细解释</h4><h4 id="5-在AppDelegate中集成FlutterBoost代码，主要是将4中的FLBPlatform实例传入，统一管理路由（像是一个全局跨端的单例），代码如下："><a href="#5-在AppDelegate中集成FlutterBoost代码，主要是将4中的FLBPlatform实例传入，统一管理路由（像是一个全局跨端的单例），代码如下：" class="headerlink" title="5. 在AppDelegate中集成FlutterBoost代码，主要是将4中的FLBPlatform实例传入，统一管理路由（像是一个全局跨端的单例），代码如下："></a>5. 在AppDelegate中集成FlutterBoost代码，主要是将4中的FLBPlatform实例传入，统一管理路由（像是一个全局跨端的单例），代码如下：</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">import flutter_boost</span><br><span class="line"></span><br><span class="line">func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions:[UIApplication.LaunchOptionsKey: Any]?) -&gt; Bool &#123;</span><br><span class="line">    // PlatformRouterImp即实现了FLBPlatform的类</span><br><span class="line">    let router = PlatformRouterImp();</span><br><span class="line">    FlutterBoostPlugin.sharedInstance().startFlutter(with: router, onStart: &#123; (engine) in</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    // Xcode 11新建iOS项目详情，查看iOS -&gt; 适配</span><br><span class="line">    window = UIWindow(frame: UIScreen.main.bounds)</span><br><span class="line">    let vc = EntryVC()</span><br><span class="line">    let nav = UINavigationController(rootViewController: vc)</span><br><span class="line">    window?.rootViewController = nav</span><br><span class="line">    window?.makeKeyAndVisible()</span><br><span class="line"></span><br><span class="line">    return true</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+
+<h4 id="6-4中FLBPlatform类的详解，里面有open，present，close三个协议，主要看下open"><a href="#6-4中FLBPlatform类的详解，里面有open，present，close三个协议，主要看下open" class="headerlink" title="6. 4中FLBPlatform类的详解，里面有open，present，close三个协议，主要看下open"></a>6. 4中FLBPlatform类的详解，里面有open，present，close三个协议，主要看下open</h4><ul>
+<li>Native调用FlutterBoostPlugin.open(url, param, exts)或者Flutter调用FlutterBoost.singleton.open(url, param, exts)方法都会走到该协议，所以整个路由控制都是在native的该协议实现的，里面可以通过url定义标识来判断是Flutter跳Native还是native跳Flutter。且可以通过url详细的单独处理单个VC。</li>
+<li>路由控制还是有两种，一是Native全部控制，二是Flutter的自己控制，具体要看界面的分配<ul>
+<li>Native全部控制路由，则每次Native调Flutter，FLBFlutterViewContainer都要包在Native的navigationController中，这样Flutter的导航操作也需要在原生控制，感觉这种适合Flutter界面少的情况</li>
+<li>Flutter的路由自己控制，这个涉及到导航栏的显示与隐藏，如果是原生的话就显示，是Flutter就隐层使用它自己的，这个适合大部分是Flutter界面的情况(我们现在就是)，FlutterBoost只是用来确保路由栈可以有效管理</li>
+</ul>
+</li>
+</ul>
+<h3 id="缺陷"><a href="#缺陷" class="headerlink" title="缺陷"></a>缺陷</h3><p>使用FlutterBoost如何将Flutter界面显示为rootVC</p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Confidence makes perfect!</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/Flutter/"># Flutter</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2020/06/10/Flutter%E9%80%82%E9%85%8D/">Flutter适配</a>
+            
+            
+            <a class="next" rel="next" href="/2020/04/15/Golang%E5%85%A5%E9%97%A8%E7%AE%80%E8%AE%B0/">Golang入门简记</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Smiacter | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

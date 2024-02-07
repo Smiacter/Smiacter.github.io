@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Smiacter">
+
+
+    <meta name="subtitle" content="Simple is real and totally enough">
+
+
+    <meta name="description" content="Recording, learning">
+
+
+    <meta name="keywords" content="iOS, blockchain, 杂谈，basketball">
+
+
+<title>Vue使用简记 | Smiacter&#39;s blog</title>
+
+
+
+    <link rel="icon" href="/images/basketball.svg">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 7.1.1"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Master Kang</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Master Kang</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">Vue使用简记</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Smiacter</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">April 15, 2020&nbsp;&nbsp;13:59:42</a>
+                        </span>
+                    
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>记录Vue的一些常用操作</p>
+<h3 id="安装与卸载"><a href="#安装与卸载" class="headerlink" title="安装与卸载"></a>安装与卸载</h3><blockquote>
+<p>卸载vue cli</p>
+</blockquote>
+<p>正确方式如下(视情况加sudo)，而非网上大多人说的 npm uninstall vue-cli -g</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm uninstall -g @vue/cli</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>安装vue cli</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g @vue/cli</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>npm install时的常见报错</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Unexpected</span> end <span class="keyword">of</span> <span class="title class_">JSON</span> input</span><br></pre></td></tr></table></figure>
+
+<p>我的解决方法均是通过清缓存解决，清一次不行，那就多清三五次</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm cache clean --force</span><br></pre></td></tr></table></figure>
+
+<h3 id="编写项目代码步骤"><a href="#编写项目代码步骤" class="headerlink" title="编写项目代码步骤"></a>编写项目代码步骤</h3><ul>
+<li>cd到想要创建项目的目录</li>
+<li>键入vue ui 命令，通过vue cli可视化界面创建项目</li>
+<li>输入项目名称，如果有预设（babel + eslint + router + vuex）则直接使用预设，如果没有则使用手动，勾选上述列举</li>
+<li>一路确定，等待项目创建完成</li>
+<li>vscode打开项目，终端输入npm run serve 能够运行，则说明项目创建成功</li>
+</ul>
+<h3 id="常用代码"><a href="#常用代码" class="headerlink" title="常用代码"></a>常用代码</h3><ol>
+<li><p>两到三个公用的界面，最好封装为组件，简化代码</p>
+</li>
+<li><p>组件使用</p>
+<ul>
+<li><p>在传动态参数时，prop前面加冒号<code>:</code>，传固定值时不加</p>
+</li>
+<li><p>组件有事件传递时，使用emit传递回父组件，父组件用<code>v-on:组件传递过来的事件名=&quot;父组件接收的事件名&quot;</code>来接收</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 组件事件传递方式</span></span><br><span class="line"><span class="comment">// param为参数</span></span><br><span class="line"><span class="comment">// clickEvent为父组件接收的事件名</span></span><br><span class="line">clickEvent (param) &#123;</span><br><span class="line">  <span class="variable language_">this</span>.$emit(<span class="string">&#x27;clickEvent&#x27;</span>, param)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 父组件接收事件方式（假设组件名为component1）</span></span><br><span class="line"><span class="comment">// 使用v-on接收，clickEvent为子组件传过来的事件名，noticeClick为父组件实际处理事件的方法名</span></span><br><span class="line">&lt;component1 v-<span class="attr">on</span>:clickEvent=<span class="string">&quot;noticeClick&quot;</span> /&gt;</span><br><span class="line">  </span><br><span class="line"><span class="comment">// 父组件具体实现子组件事件的地方</span></span><br><span class="line">noticeClick (param) &#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>必须要计算好单个页面的高度，否则会影响如Vant组件的上拉下拉效果，滚动条显示等，具体参照西北项目</p>
+</li>
+<li><p>CSS样式，基本上flex和grid可以搞定大部分情况，可参照收藏的掘金文章多熟悉</p>
+</li>
+<li><p>Vant目前修改其组件内部样式是用的<code>::v-deep .vant的class名(通过Chrome调试查看) </code></p>
+</li>
+<li><p>路由传参与接收</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 传值</span></span><br><span class="line"><span class="comment">// name: 路由名</span></span><br><span class="line"><span class="comment">// params: 所传参数，object（字典）类型</span></span><br><span class="line"><span class="variable language_">this</span>.<span class="property">$router</span>.<span class="title function_">push</span>(&#123; <span class="attr">name</span>: <span class="string">&#x27;tododetail&#x27;</span>, <span class="attr">params</span>: &#123; <span class="attr">id</span>: id, <span class="attr">type</span>: pType &#125; &#125;)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 接收传值</span></span><br><span class="line"><span class="comment">// 通过当前路由route获取params中的参数</span></span><br><span class="line"><span class="comment">// xx为传值过来中object中的具体参数字段</span></span><br><span class="line"><span class="variable language_">this</span>.<span class="property">$route</span>.<span class="property">params</span>.<span class="property">xx</span></span><br></pre></td></tr></table></figure>
+
+
+</li>
+<li><p>项目配置</p>
+<ul>
+<li>网络请求跨域</li>
+<li>屏幕适配</li>
+<li>公共样式导入</li>
+<li>…</li>
+</ul>
+</li>
+</ol>
+<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><ul>
+<li><p>调用data或者方法，一定要记得写this. 不然起不了作用很难发现问题😂</p>
+</li>
+<li><p>JS字符串中使用变量</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> strWithVar = <span class="string">`some string <span class="subst">$&#123;<span class="keyword">var</span>&#125;</span>`</span> <span class="comment">// 外边包含的是``，不是单引号</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h3><ul>
+<li><code>网络请求返回数据正确，但是HTML标签赋值却没值。</code><ul>
+<li>问题：检查数据是否有多层嵌套如data.xx.yy.zz，可能是VUE不够智能，它可能不能获取较深层的数据，一般最多两层。</li>
+<li>解决：用一个新的变量接收</li>
+</ul>
+</li>
+<li><code>Uncaught TypeError: Cannot read property ‘substring‘ of undefined相关</code><ul>
+<li>问题：一般为调用如substring等方法的字段未undefined，所以整体也会报undefined</li>
+<li>解决：对不能自动处理undefined的字段进行判断，null判断，undefined等判断</li>
+</ul>
+</li>
+<li><code>van-overlay</code>不能拖动滚动<ul>
+<li>解决：vant版本太低，需要升级到<code>2.6.2</code>以上，设置<code>:lock-scroll=false</code></li>
+</ul>
+</li>
+<li>纯数字或纯字母不换行<ul>
+<li>问题：被认为是一个数字（纯数字）或者一个单词（纯字母）</li>
+<li>解决：CSS样式加上<code>  word-break: break-all</code></li>
+</ul>
+</li>
+<li>传参prop值变化，但是组件显示没变<ul>
+<li>问题：组件绑定的是data的值</li>
+<li>解决，将data绑定改为computed</li>
+</ul>
+</li>
+<li>Vue默认创建的项目，布局在手机上从状态栏下面开始<ul>
+<li>解决：在public&#x2F;index.html中对应viewport的meta标签加上<code>viewport-fit=cover</code>，确保视图缩放填充整个屏幕</li>
+</ul>
+</li>
+</ul>
+<h3 id="待深入"><a href="#待深入" class="headerlink" title="待深入"></a>待深入</h3><ul>
+<li>移动端页面滚动条&amp;高度一次性配置方案</li>
+</ul>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Confidence makes perfect!</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/Vue/"># Vue</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2020/04/15/Golang%E5%85%A5%E9%97%A8%E7%AE%80%E8%AE%B0/">Golang入门简记</a>
+            
+            
+            <a class="next" rel="next" href="/2020/04/14/%E8%81%8A%E5%A4%A9%E6%84%9F%E6%83%B3-%E7%A7%AF%E6%9E%81%E7%9A%84%E5%AD%A6%E4%B9%A0%EF%BC%8C%E5%8A%AA%E5%8A%9B%E7%9A%84%E6%8F%90%E5%8D%87/">聊天感想-积极的学习，努力的提升</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Smiacter | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>
